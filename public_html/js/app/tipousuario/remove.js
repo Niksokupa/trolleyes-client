@@ -18,6 +18,7 @@ moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', 
                 $scope.deleted = false;
             })
         }
+        $scope.isActive = toolService.isActive;
     }
 
 ]);

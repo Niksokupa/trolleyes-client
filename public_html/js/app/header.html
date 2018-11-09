@@ -10,16 +10,28 @@
                 <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item" ng-class="{'active': isActive('/tipousuario/plist')}">
+            <li class="nav-item" ng-class="{'active': 
+                    isActive('/tipousuario/plist') || 
+                    isActive('/tipousuario/view/') || 
+                    isActive('/tipousuario/edit/') || 
+                    isActive('/tipousuario/remove/')}">
                 <a class="nav-link" href="tipousuario/plist">Tipousuario</a>
             </li>
-            <li class="nav-item" ng-class="{'active': isActive('/usuario/plist')}">
+            <li class="nav-item" ng-class="{'active': 
+                    isActive('/usuario/plist') || 
+                    isActive('/usuario/view/') || 
+                    isActive('/usuario/edit/') || 
+                    isActive('/usuario/remove/')}">
                 <a class="nav-link" href="usuario/plist">Usuario</a>
             </li>
-            <li class="nav-item" ng-class="{'active': isActive('/factura/plist')}">
+            <li class="nav-item" ng-class="{'active': 
+                    isActive('/factura/plist') || 
+                    isActive('/factura/view/')}">
                 <a class="nav-link" href="factura/plist">Factura</a>
             </li>
-            <li class="nav-item" ng-class="{'active': isActive('/producto/plist') || isActive('/producto/view/')}">
+            <li class="nav-item" ng-class="{'active': 
+                    isActive('/producto/plist') || 
+                    isActive('/producto/view/')}">
                 <a class="nav-link" href="producto/plist">Producto</a>
             </li>
             <li class="nav-item" ng-class="{'active': isActive('/tipoproducto/plist')}">
