@@ -132,6 +132,9 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                             </button>
                         </th>
+                        <th>
+                            Acciones
+                        </th>
                     </tr>
                     <tr ng-repeat="fila in ajaxDataUsuarios">
                         <td>{{fila.id}}</td>
@@ -141,6 +144,11 @@
                         <td>{{fila.ape2}}</td>
                         <td>{{fila.login}}</td>
                         <td>{{fila.tipoUsuario.desc}}</td>
+                        <td>
+                            <a href="/trolleyes-client/public_html/usuario/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a>
+                            <a href="/trolleyes-client/public_html/usuario/edit/{{fila.id}}" class="btn btn-light fas fa-edit" role="button"></a>
+                            <a href="/trolleyes-client/public_html/usuario/remove/{{fila.id}}" class="btn btn-light fas fa-trash" role="button"></a>
+                        </td>
                     </tr>
                 </table>
 

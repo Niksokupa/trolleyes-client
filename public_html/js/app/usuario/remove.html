@@ -1,0 +1,56 @@
+<header ng-include="'js/app/header.html'"></header>
+<main role="main" class="container">
+
+    <div class="mx-auto" style="margin-top: 80px">
+        <div class="table-responsive">
+                <table class="table table-striped table-sm">
+
+            <tr class="text-center">
+                <th class="text-center">ID</th>
+                <td class="text-center">{{ajaxData.id}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">DNI</th>
+                <td class="text-center">{{ajaxData.dni}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">Nombre</th>
+                <td class="text-center">{{ajaxData.nombre}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">1er Apellido</th>
+                <td class="text-center">{{ajaxData.ape1}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">2º Apellido</th>
+                <td class="text-center">{{ajaxData.ape2}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">Login</th>
+                <td class="text-center">{{ajaxData.login}}</td></tr>
+            <tr class="text-center">
+                <th class="text-center">Tipo de Usuario</th>
+                <td class="text-center">{{ajaxData.tipoUsuario.desc}}</td></tr>
+
+        </table>
+        </div>
+        <div class="row" ng-show="deleted">
+            <div class="col-12">
+                <div class="card mx-auto" style="width: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">¿Desea eliminar el Registro?</h5>
+                        <div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3" role="alert">
+                            <button type="button" class="btn btn-outline-success mr-5" ng-click="eliminar()"><i class="far fa-check-circle"></i></button>
+                            <button type="button" class="btn btn-outline-danger" onclick="window.history.back()"><i class="fas fa-ban"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="!deleted">
+            <div class="col-12">
+                <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                    <p>Registro eliminado con exito<p> <button type="button" class="btn btn-light" onclick="window.history.back()">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>
