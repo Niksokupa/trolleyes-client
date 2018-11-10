@@ -4,7 +4,8 @@ moduleUsuario.controller("usuarioEditController", [
   "$scope",
   "$http",
   "$routeParams",
-  function ($scope, $http, $routeParams) {
+  "toolService",
+  function ($scope, $http, $routeParams, toolService) {
     $http({
       method: "GET",
       url: `http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=${$routeParams.id}`
@@ -23,7 +24,7 @@ moduleUsuario.controller("usuarioEditController", [
       console.log(response);
     };
 
-
+$scope.isActive = toolService.isActive;
 
     $scope.update = function () {
       var json = {

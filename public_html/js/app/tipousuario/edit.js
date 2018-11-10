@@ -4,7 +4,8 @@ moduleTipousuario.controller("tipousuarioEditController", [
   "$scope",
   "$http",
   "$routeParams",
-  function ($scope, $http, $routeParams) {
+  "toolService",
+  function ($scope, $http, $routeParams, toolService) {
     $http({
       method: "GET",
       url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=${$routeParams.id}`
@@ -36,7 +37,7 @@ moduleTipousuario.controller("tipousuarioEditController", [
         console.log(response);
       }
     }
-
+$scope.isActive = toolService.isActive;
 
   }
 ]);

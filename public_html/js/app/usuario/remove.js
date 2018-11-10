@@ -20,6 +20,7 @@ moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$locati
                 $scope.deleted = false;
             })
         }
+        $scope.isActive = toolService.isActive;
     }
 
 ]);
