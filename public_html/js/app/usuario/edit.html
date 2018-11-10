@@ -61,14 +61,11 @@
               <div ng-show="userForm.pass.$error.minlength" class="alert alert-danger" role="alert">
                 La longitud de la constraseña es demasiado corta
               </div>
-              <div ng-show="!userForm.pass.$valid" class="alert alert-danger" role="alert">
-                La contraseña es obligatoria.
-              </div>
             </div>
             <div class="form-group">
               <label>Tipo usuario</label>
-              <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_desc" ng-model="obj_tipoUsuario_desc"
-              />
+              <a href="/trolleyes-client/public_html/tipousuario/view/{{id}}" class="btn btn-light fas fa-search" role="button"></a>
+              <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_desc" ng-model="obj_tipoUsuario_desc"/>
             </div>
             <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
           </form>
