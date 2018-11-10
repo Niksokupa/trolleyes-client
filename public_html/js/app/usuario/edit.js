@@ -17,8 +17,8 @@ moduleUsuario.controller("usuarioEditController", [
       $scope.ape2 = response.data.message.ape2;
       $scope.login = response.data.message.login;
       $scope.pass = 'meh';
-      $scope.obj_tipoUsuario_desc = response.data.message.tipoUsuario.desc;
-      $scope.obj_tipoUsuario_id = response.data.message.tipoUsuario.id;
+      $scope.obj_tipoUsuario_desc = response.data.message.obj_tipoUsuario.desc;
+      $scope.obj_tipoUsuario_id = response.data.message.obj_tipoUsuario.id;
     }), function (response) {
       console.log(response);
     };
