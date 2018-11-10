@@ -102,28 +102,9 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 }
             }
         }
-        
-        $scope.create = function(){
-            var usuario = {
-                    dni: '67848927U',
-                    nombre: 'Ramonet',
-                    ape1: 'Sivasalhort',
-                    ape2: 'Portafigues',
-                    login: 'porta',
-                    pass: 'figues',
-                    id_tipoUsuario: 1
-                }
 
-            $http({
-                method: 'POST',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=create',
-                data: usuario
-            }).then(function (response, data) {
-                console.log(data)
-            }, function (response) {
-                $scope.status = response.status;
-                $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
-            });
+        $scope.create = function () {
+            $location.url(`usuario/new`);
         }
 
 

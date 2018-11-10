@@ -1,0 +1,80 @@
+<header ng-include="'js/app/header.html'"></header>
+<div class="container-fluid">
+  <div class="row" style="margin-top: 70px">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-2 mx-auto">
+          <h3>Nuevo usuario</h3>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-3 mx-auto">
+          <form name="userForm">
+            <div class="form-group">
+              <label>ID</label>
+              <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid && !userForm.dni.$pristine }">
+              <label>DNI</label>
+              <input type="text" class="form-control" id="dni" name="dni" ng-model="dni" ng-required="true" ng-pattern="/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/"
+              />
+              <div ng-show="userForm.dni.$error.pattern" class="alert alert-danger" role="alert">
+                Formato dni no valido
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" ng-model="nombre" ng-required="true" />
+              <div ng-show="!userForm.nombre.$valid" class="alert alert-danger" role="alert">
+                Nombre obligatorio
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Primer apellido</label>
+              <input type="text" class="form-control" id="ape1" name="ape1" ng-model="ape1" ng-required="true" />
+              <div ng-show="!userForm.ape1.$valid" class="alert alert-danger" role="alert">
+                Primer apellido obligatorio
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Segundo apellido</label>
+              <input type="text" class="form-control" id="ape2" name="ape2" ng-model="ape2" ng-required="true" />
+              <div ng-show="!userForm.ape2.$valid" class="alert alert-danger" role="alert">
+                Segundo apellido obligatorio
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Login</label>
+              <input type="text" class="form-control" id="login" name="login" ng-model="login" ng-minlength="6" ng-required="true" />
+              <div ng-show="userForm.login.$error.minlength" class="alert alert-danger" role="alert">
+                La longitud del login es demasiado corta
+              </div>
+              <div ng-show="!userForm.login.$valid" class="alert alert-danger" role="alert">
+                Login obligatorio
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input type="password" class="form-control" ng-class="{' is-invalid': userForm.pass.$invalid && !userForm.pass.$pristine}"
+                id="pass" name="pass" ng-model="pass" ng-minlength="6" ng-required="true"/>
+              <div ng-show="userForm.pass.$error.minlength" class="alert alert-danger" role="alert">
+                La longitud de la constraseña es demasiado corta
+              </div>
+              <div ng-show="!userForm.pass.$valid" class="alert alert-danger" role="alert">
+                La contraseña es obligatoria.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Tipo usuario</label>
+              <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_id" ng-model="obj_tipoUsuario_id"
+              />
+            </div>
+            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>
