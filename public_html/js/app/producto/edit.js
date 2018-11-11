@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioEditController", [
+moduleProducto.controller("productoEditController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -10,11 +10,16 @@ moduleTipousuario.controller("tipousuarioEditController", [
 
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=producto&op=get&id=${$routeParams.id}`
         }).then(function (response) {
-            console.log(response);
             $scope.id = response.data.message.id;
+            $scope.codigo = response.data.message.codigo;
             $scope.desc = response.data.message.desc;
+            $scope.existencias = response.data.message.existencias;
+            $scope.precio = response.data.message.precio;
+            $scope.foto = response.data.message.foto;
+            $scope.obj_tipoProducto_desc = response.data.message.obj_tipoProducto.desc;
+            $scope.obj_tipoProducto_id = response.data.message.obj_tipoProducto.id;
         }), function (response) {
             console.log(response);
         };
@@ -22,14 +27,19 @@ moduleTipousuario.controller("tipousuarioEditController", [
         $scope.update = function () {
             var json = {
                 id: $scope.id,
-                desc: $scope.desc
+                codigo: $scope.codigo,
+                desc: $scope.desc,
+                existencias: $scope.existencias,
+                precio: $scope.precio,
+                foto: $scope.foto,
+                id_tipoProducto: $scope.obj_tipoProducto_id
             }
             $http({
                 method: 'GET',
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob=producto&op=update',
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;

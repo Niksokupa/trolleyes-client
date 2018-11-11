@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12" style="text-align: center">
-                    <h3>Editar tipos de usuario</h3>
+                    <h3>Editar productos</h3>
                 </div>
             </div>
             <hr />
@@ -16,11 +16,37 @@
                             <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
                         </div>
                         <div class="form-group">
+                            <label>Código</label>
+                            <input type="text" class="form-control" id="codigo" name="codigo" ng-model="codigo" ng-required="true" />
+                            <div ng-show="!userForm.codigo.$valid" class="alert alert-danger" role="alert">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Descripción</label>
                             <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
                             <div ng-show="!userForm.desc.$valid" class="alert alert-danger" role="alert">
-                                Descripción obligatoria
+                                Campo obligatorio
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Existencias</label>
+                            <input type="text" class="form-control" id="existencias" name="existencias" ng-model="existencias" ng-required="true" />
+                            <div ng-show="!userForm.existencias.$valid" class="alert alert-danger" role="alert">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input type="text" class="form-control" id="precio" name="precio" ng-model="precio" ng-required="true" />
+                            <div ng-show="!userForm.precio.$valid" class="alert alert-danger" role="alert">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de producto</label>
+                            <a href="/trolleyes-client/public_html/tipoproducto/view/{{id}}" class="btn btn-light fas fa-search" role="button"></a>
+                            <input type="text" class="form-control" id="obj_tipoProducto_desc" name="obj_tipoProducto_desc" ng-model="obj_tipoProducto_desc"/>
                         </div>
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Editar</button>
