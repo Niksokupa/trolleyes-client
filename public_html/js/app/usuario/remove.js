@@ -1,5 +1,5 @@
 moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
-    function ($scope, $http, $location, toolService, $routeParams) {
+    function ($scope, $http, toolService, $routeParams) {
         $scope.deleted = true;
         $http({
             method: "GET",
