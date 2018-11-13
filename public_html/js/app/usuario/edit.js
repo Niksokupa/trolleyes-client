@@ -11,7 +11,6 @@ moduleUsuario.controller("usuarioEditController", [
             method: "GET",
             url: `http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=${$routeParams.id}`
         }).then(function (response) {
-            console.log(response);
             $scope.id = response.data.message.id;
             $scope.dni = response.data.message.dni;
             $scope.nombre = response.data.message.nombre;

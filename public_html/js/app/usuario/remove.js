@@ -1,11 +1,16 @@
-moduleUsuario.controller('usuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
+"use strict";
+
+moduleUsuario.controller("usuarioRemoveController", [
+    "$scope", 
+    "$http", 
+    "toolService", 
+    "$routeParams",
     function ($scope, $http, toolService, $routeParams) {
         $scope.deleted = true;
+        $scope.id = $routeParams.id;
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=${
-                $routeParams.id
-                }`
+            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.ajaxData = response.data.message;
         }).then /
