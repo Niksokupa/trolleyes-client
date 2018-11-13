@@ -67,7 +67,10 @@
                             <a href="/trolleyes-client/public_html/tipousuario/view/{{id}}" class="btn btn-light fas fa-search" role="button"></a>
                             <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_desc" ng-model="obj_tipoUsuario_desc"/>
                         </div>
-                        <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Enviar</button>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Editar</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
                     </form>
                 </div>
             </div>
