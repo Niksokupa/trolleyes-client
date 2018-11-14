@@ -1,10 +1,7 @@
 'use strict'
 
-moduleCommon.controller('homeController', ['$scope', '$location', 'toolService', 'sessionService',
-    function ($scope, $location, toolService, oSessionService) {
-        $scope.logged = false;
-        $scope.ruta = $location.path();
-        $scope.isActive = toolService.isActive;
+moduleUsuario.controller('usuarioLogoutController', ['$scope', '$http', 'toolService', 'sessionService',
+    function ($scope, $http, toolService, oSessionService) {
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
@@ -16,7 +13,8 @@ moduleCommon.controller('homeController', ['$scope', '$location', 'toolService',
                 method: 'GET',
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
             }).then(function () {
-                $location.url('/');
+                $scope.logged = false;
             });
         }
+                $scope.isActive = toolService.isActive;
     }]);

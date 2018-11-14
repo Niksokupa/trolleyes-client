@@ -59,7 +59,10 @@
                             <label>Tipo usuario</label>
                             <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_id" ng-model="obj_tipoUsuario_id"/>
                         </div>
-                        <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        </div>
                     </form>
                 </div>
             </div>

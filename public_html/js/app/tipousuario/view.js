@@ -1,9 +1,10 @@
 'use strict'
 
-moduleTipousuario.controller('tipousuarioViewController', ['$scope', '$http', 'toolService', '$routeParams',
-    function ($scope, $http, toolService, $routeParams) {
+moduleTipousuario.controller('tipousuarioViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, toolService, $routeParams, oSessionService) {
         $scope.id = $routeParams.id;
         $scope.mostrar = false;
+        $scope.logged = false;
         $scope.activar = true;
         $scope.ajaxData = "";
         $scope.toggle = function () {
@@ -23,6 +24,21 @@ moduleTipousuario.controller('tipousuarioViewController', ['$scope', '$http', 't
             $scope.ajaxData = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
+
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $location.url('/');
+            });
+        }
+
         $scope.isActive = toolService.isActive;
 
     }

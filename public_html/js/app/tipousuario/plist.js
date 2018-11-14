@@ -1,8 +1,9 @@
 'use strict'
 
-moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
-    function ($scope, $http, $location, toolService, $routeParams) {
+moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.ob = "tipousuario";
+        $scope.logged = false;
         $scope.totalPages = 1;
 
         if (!$routeParams.order) {
@@ -30,7 +31,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
         }
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob+'/plist/' + $scope.rpp + '/' + $scope.page);
+            $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
         }
 
         $scope.ordena = function (order, align) {
@@ -47,7 +48,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -64,7 +65,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
@@ -96,8 +97,23 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
             }
         }
         $scope.create = function () {
-            $location.url($scope.ob+'/new');
+            $location.url($scope.ob + '/new');
         }
+
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $location.url('/');
+            });
+        }
+
         $scope.isActive = toolService.isActive;
     }
 
