@@ -10,24 +10,29 @@ moduleUsuario.controller("usuarioLoginController", [
         $scope.logged = false;
         $scope.failedlogin = false;
         $scope.logging = function () {
-            
-                var login = $scope.login;
-                var pass = $scope.pass;
-            
+
+            var login = $scope.login;
+            var pass = forge_sha256($scope.pass);
+
 
             $http({
                 method: 'GET',
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=login&user='+login+'&pass='+forge_sha256(pass)
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=login&user=' + login + '&pass=' + pass
             }).then(function (response, data) {
-                $scope.logged = true;
-                $scope.failedlogin = false;
-                oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
-                $scope.loggeduser = oSessionService.getUserName();
+                if (response.data.status == 401) {
+                    $scope.failedlogin = true;
+                } else {
+                    $scope.logged = true;
+                    $scope.failedlogin = false;
+                    oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                    $scope.loggeduser = oSessionService.getUserName();
+                }
+
             }, function (response) {
-                $scope.failedlogin = true;
+
             });
         }
         $scope.isActive = toolService.isActive;
