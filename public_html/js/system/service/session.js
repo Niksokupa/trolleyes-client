@@ -20,6 +20,7 @@ moduleService.service('sessionService', ['$location', function ($location) {
             },
             setSessionInactive: function (name) {
                 isSessionActive = false;
+                userName = "";
             }
         }
 

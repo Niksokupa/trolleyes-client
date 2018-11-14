@@ -14,6 +14,7 @@ moduleUsuario.controller('usuarioLogoutController', ['$scope', '$http', 'toolSer
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
             }).then(function () {
                 $scope.logged = false;
+                oSessionService.setSessionInactive();
             });
         }
                 $scope.isActive = toolService.isActive;
