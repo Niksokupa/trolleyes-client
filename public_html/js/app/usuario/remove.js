@@ -1,11 +1,12 @@
 "use strict";
 
 moduleUsuario.controller("usuarioRemoveController", [
-    "$scope", 
-    "$http", 
-    "toolService", 
+    "$scope",
+    "$http",
+    "toolService",
     "$routeParams",
-    function ($scope, $http, toolService, $routeParams) {
+    "sessionService",
+    function ($scope, $http, toolService, $routeParams, oSessionService) {
         $scope.deleted = true;
         $scope.id = $routeParams.id;
         $http({
@@ -14,8 +15,8 @@ moduleUsuario.controller("usuarioRemoveController", [
         }).then(function (response) {
             $scope.ajaxData = response.data.message;
         }).then /
-            function (response) {
-            };
+                function (response) {
+                };
 
         $scope.eliminar = function () {
             $http({
@@ -26,6 +27,20 @@ moduleUsuario.controller("usuarioRemoveController", [
             })
         }
         $scope.isActive = toolService.isActive;
+
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $location.url('/');
+            });
+        }
     }
 
 ]);

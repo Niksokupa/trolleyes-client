@@ -18,10 +18,12 @@
                 <a class="nav-link" href="tipousuario/plist">Tipousuario</a>
             </li>
             <li class="nav-item" ng-class="{'active': 
-                    isActive('/usuario/plist') ||
-                        isActive('/usuario/view/') ||
-                        isActive('/usuario/edit/') ||
-                        isActive('/usuario/remove/')}">
+                    isActive('/usuario/plist') || 
+                    isActive('/usuario/view/') || 
+                    isActive('/usuario/edit/') || 
+                    isActive('/usuario/login/') || 
+                    isActive('/usuario/logout/') || 
+                    isActive('/usuario/remove/')}">
                 <a class="nav-link" href="usuario/plist">Usuario</a>
             </li>
             <li class="nav-item" ng-class="{'active': 
@@ -40,10 +42,11 @@
 
         </ul>
         <div ng-show="!logged">
-
+            <a href="usuario/login" class="badge badge-info">Login</a>
         </div>
         <div ng-show="logged">
-
+            <span class="mr-3 text-info" style="text-transform: capitalize;">Bienvenido {{loggeduser}}</span>
+            <a href="usuario/logout" class="badge badge-danger">Logout</a>
         </div>
     </div>
 </nav>

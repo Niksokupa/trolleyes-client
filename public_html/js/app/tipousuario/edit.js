@@ -5,8 +5,10 @@ moduleTipousuario.controller("tipousuarioEditController", [
     "$http",
     "$routeParams",
     "toolService",
-    function ($scope, $http, $routeParams, toolService) {
+    "sessionService",
+    function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.edited = true;
+        $scope.logged = false;
 
         $http({
             method: "GET",
@@ -35,6 +37,21 @@ moduleTipousuario.controller("tipousuarioEditController", [
                 $scope.edited = false;
             })
         }
+
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $location.url('/');
+            });
+        }
+
         $scope.isActive = toolService.isActive;
     }
 ]);

@@ -5,8 +5,10 @@ moduleUsuario.controller("usuarioNewController", [
     "$http",
     "$routeParams",
     "toolService",
-    function ($scope, $http, $routeParams, toolService) {
+    "sessionService",
+    function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
+        $scope.logged = false;
         $scope.create = function () {
             var json = {
                 id: $scope.id,
@@ -15,7 +17,7 @@ moduleUsuario.controller("usuarioNewController", [
                 ape1: $scope.ape1,
                 ape2: $scope.ape2,
                 login: $scope.login,
-                pass: $scope.pass,
+                pass: forge_sha256($scope.pass),
                 id_tipoUsuario: $scope.obj_tipoUsuario_id
             }
 
@@ -33,6 +35,21 @@ moduleUsuario.controller("usuarioNewController", [
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
         }
+        
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
+        $scope.logout = function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+            }).then(function () {
+                $location.url('/');
+            });
+        }
+
         $scope.isActive = toolService.isActive;
     }
 ]);
