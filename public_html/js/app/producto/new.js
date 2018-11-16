@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioNewController", [
+moduleProducto.controller("productoNewController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -11,7 +11,12 @@ moduleTipousuario.controller("tipousuarioNewController", [
         $scope.logged = false;
         $scope.create = function () {
             var json = {
-                desc: $scope.desc
+                id: $scope.id,
+                codigo: $scope.codigo,
+                desc: $scope.desc,
+                existencias: $scope.existencias,
+                precio: $scope.precio,
+                id_tipoProducto: $scope.obj_tipoProducto_id
             }
 
             $http({
@@ -19,17 +24,16 @@ moduleTipousuario.controller("tipousuarioNewController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=create',
+                url: 'http://localhost:8081/trolleyes/json?ob=producto&op=create',
                 params: {json: JSON.stringify(json)}
-            }).then(function (response) {
+            }).then(function (response, data) {
                 $scope.created = false;
-                $scope.id = response.data.message.id;
             }, function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
         }
-
+        
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
             $scope.logged = true;
@@ -38,7 +42,7 @@ moduleTipousuario.controller("tipousuarioNewController", [
         $scope.logout = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
+                url: 'http://localhost:8081/trolleyes/json?ob=producto&op=logout'
             }).then(function () {
                 $location.url('/');
             });
