@@ -32,10 +32,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //TIPOPRODUCTO
         $routeProvider.when('/tipoproducto/plist', {templateUrl: 'js/app/tipoproducto/plist.html', controller: 'tipoproductoPlistController'});
         $routeProvider.when('/tipoproducto/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/tipoproducto/plist.html', controller: 'tipoproductoPlistController'});
-        $routeProvider.when('/tipoproducto/new', {templateUrl: 'js/app/tipoproducto/plist.html', controller: 'tipoproductoNewController'});
+        $routeProvider.when('/tipoproducto/new', {templateUrl: 'js/app/tipoproducto/new.html', controller: 'tipoproductoNewController'});
         $routeProvider.when('/tipoproducto/view/:id', {templateUrl: 'js/app/tipoproducto/view.html', controller: 'tipoproductoViewController'});
         $routeProvider.when('/tipoproducto/edit/:id', {templateUrl: 'js/app/tipoproducto/edit.html', controller: 'tipoproductoEditController'});
-        $routeProvider.when('/tipoproducto/remove/:id', {templateUrl: 'js/app/tipoproducto/new.html', controller: 'tipoproductoRemoveController'});
+        $routeProvider.when('/tipoproducto/remove/:id', {templateUrl: 'js/app/tipoproducto/remove.html', controller: 'tipoproductoRemoveController'});
 
         //PRODUCTO
         $routeProvider.when('/producto/plist', {templateUrl: 'js/app/producto/plist.html', controller: 'productoPlistController'});
