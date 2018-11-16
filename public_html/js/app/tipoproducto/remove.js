@@ -1,12 +1,12 @@
 "use strict";
 
-moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleTipoproducto.controller('tipoproductoRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.deleted = true;
         $scope.logged = false;
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=${$routeParams.id}`
         }).then(function (response) {
             $scope.ajaxData = response.data.message;
         });
@@ -14,7 +14,7 @@ moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', 
         $scope.eliminar = function () {
             $http({
                 method: "GET",
-                url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=remove&id=${$routeParams.id}`
+                url: `http://localhost:8081/trolleyes/json?ob=tipoproducto&op=remove&id=${$routeParams.id}`
             }).then(function (response) {
                 $scope.deleted = false;
             })

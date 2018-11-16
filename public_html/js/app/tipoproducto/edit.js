@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioEditController", [
+moduleTipoproducto.controller("tipoproductoEditController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -12,14 +12,11 @@ moduleTipousuario.controller("tipousuarioEditController", [
 
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=${$routeParams.id}`
         }).then(function (response) {
-            console.log(response);
             $scope.id = response.data.message.id;
             $scope.desc = response.data.message.desc;
-        }), function (response) {
-            console.log(response);
-        };
+        });
 
         $scope.update = function () {
             var json = {
@@ -31,7 +28,7 @@ moduleTipousuario.controller("tipousuarioEditController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=update',
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
