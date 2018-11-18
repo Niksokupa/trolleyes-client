@@ -14,7 +14,7 @@ moduleService.service('toolService', ['$location', function ($location) {
             objects: {
                 usuario: 'usuario',
                 tipousuario: 'tipousuario',
-                producto: 'tipoproducto',
+                producto: 'producto',
                 tipoproducto: 'tipoproducto',
                 factura: 'factura',
                 linea: 'linea'

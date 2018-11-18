@@ -55,10 +55,26 @@
                                 La contraseña es obligatoria.
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tipo usuario</label>
-                            <input type="text" class="form-control" id="obj_tipoUsuario_desc" name="obj_tipoUsuario_id" ng-model="obj_tipoUsuario_id"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Tipo usuario</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#cadd-location-modal">
+                                                <i class="fas fa-search-plus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control " value="ID :" disabled>
+                                        <input type="text" class="form-control " id="obj_tipoUsuario.id" name="obj_tipoUsuario.id" ng-model="obj_tipoUsuario.id"/>
+                                    </div>
+                                    <input type="text" class="form-control " value="Desc :" disabled>
+                                    <input type="text" class="form-control " id="obj_tipoUsuario.desc" name="obj_tipoUsuario.desc" ng-model="obj_tipoUsuario.desc"/>
+                                </div>
+                            </div>
                         </div>
+                        <cadd-modal-var class="modal fade ng-isolate-scope" id="cadd-location-modal" tabla="'tipousuario'" data="obj_tipoUsuario"
+                                        aria-hidden="true" style="display: none;"></cadd-modal-var>
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>

@@ -20,8 +20,10 @@ moduleUsuario.controller("usuarioEditController", [
             $scope.ape2 = response.data.message.ape2;
             $scope.login = response.data.message.login;
             $scope.pass = 'mehhhhhh';
-            $scope.obj_tipoUsuario_desc = response.data.message.obj_tipoUsuario.desc;
-            $scope.obj_tipoUsuario_id = response.data.message.obj_tipoUsuario.id;
+            $scope.obj_tipoUsuario = {
+                id: response.data.message.obj_tipoUsuario.id,
+                desc: response.data.message.obj_tipoUsuario.desc
+            }
         }), function () {
         };
 
@@ -36,7 +38,7 @@ moduleUsuario.controller("usuarioEditController", [
                 ape2: $scope.ape2,
                 login: $scope.login,
                 pass: $scope.pass,
-                id_tipoUsuario: $scope.obj_tipoUsuario_id
+                id_tipoUsuario: $scope.obj_tipoUsuario.id
             }
             $http({
                 method: 'GET',

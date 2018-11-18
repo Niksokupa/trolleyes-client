@@ -20,8 +20,10 @@ moduleProducto.controller("productoEditController", [
             $scope.existencias = response.data.message.existencias;
             $scope.precio = response.data.message.precio;
             $scope.foto = response.data.message.foto;
-            $scope.obj_tipoProducto_desc = response.data.message.obj_tipoProducto.desc;
-            $scope.obj_tipoProducto_id = response.data.message.obj_tipoProducto.id;
+            $scope.obj_tipoProducto = {
+                id: response.data.message.obj_TipoproductoBean.id,
+                desc: response.data.message.obj_TipoproductoBean.desc
+            }
         }), function (response) {
             console.log(response);
         };
@@ -34,7 +36,7 @@ moduleProducto.controller("productoEditController", [
                 existencias: $scope.existencias,
                 precio: $scope.precio,
                 foto: $scope.foto,
-                id_tipoProducto: $scope.obj_tipoProducto_id
+                id_tipoProducto: $scope.obj_tipoProducto.id
             }
             $http({
                 method: 'GET',

@@ -18,7 +18,7 @@ moduleUsuario.controller("usuarioNewController", [
                 ape2: $scope.ape2,
                 login: $scope.login,
                 pass: forge_sha256($scope.pass),
-                id_tipoUsuario: $scope.obj_tipoUsuario_id
+                id_tipoUsuario: $scope.obj_tipoUsuario.id
             }
 
             $http({
