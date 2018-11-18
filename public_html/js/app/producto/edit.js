@@ -5,8 +5,10 @@ moduleProducto.controller("productoEditController", [
     "$http",
     "$routeParams",
     "toolService",
-    function ($scope, $http, $routeParams, toolService) {
+    "sessionService",
+    function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.edited = true;
+        $scope.logged = false;
 
         $http({
             method: "GET",
@@ -46,5 +48,10 @@ moduleProducto.controller("productoEditController", [
             })
         }
         $scope.isActive = toolService.isActive;
+
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
     }
 ]);

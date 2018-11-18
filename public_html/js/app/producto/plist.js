@@ -1,7 +1,8 @@
 'use strict'
 
-moduleProducto.controller('productoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
-    function ($scope, $http, $location, toolService, $routeParams) {
+moduleProducto.controller('productoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+        $scope.logged = false;
         $scope.ob = "producto";
         $scope.totalPages = 1;
 
@@ -29,8 +30,13 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
             }
         }
 
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
+
         $scope.resetOrder = function () {
-            $location.url($scope.ob+'/plist/' + $scope.rpp + '/' + $scope.page);
+            $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
         }
 
         $scope.ordena = function (order, align) {
@@ -47,7 +53,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -64,7 +70,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
@@ -96,7 +102,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
             }
         }
         $scope.create = function () {
-            $location.url($scope.ob+'/new');
+            $location.url($scope.ob + '/new');
         }
         $scope.isActive = toolService.isActive;
     }

@@ -1,7 +1,8 @@
 'use strict'
 
-moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolService', '$routeParams',
-    function ($scope, $http, toolService, $routeParams) {
+moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
+    function ($scope, $http, toolService, $routeParams, oSessionService) {
+        $scope.logged = false;
         $scope.id = $routeParams.id;
         $scope.mostrar = false;
         $scope.activar = true;
@@ -25,5 +26,9 @@ moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolSer
         });
         $scope.isActive = toolService.isActive;
 
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
+        }
     }
 ]);
