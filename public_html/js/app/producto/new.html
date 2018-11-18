@@ -40,10 +40,28 @@
                                 Precio obligatorio
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tipo de producto</label>
-                            <input type="text" class="form-control" id="obj_tipoProducto_desc" name="obj_tipoProducto_id" ng-model="obj_tipoProducto_id"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Tipo usuario</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#cadd-location-modal">
+                                                <i class="fas fa-search-plus"></i>
+                                            </button>
+                                        </div>
+                                        <input style="width: 200px;" type="text" class="form-control " value="ID :" disabled>
+                                        <input type="text" class="form-control " id="obj_tipoProducto.id" name="obj_tipoProducto.id" ng-model="obj_tipoProducto.id"/>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control " value="Descripción :" disabled>
+                                        <input type="text" class="form-control " id="obj_tipoProducto.desc" name="obj_tipoProducto.desc" ng-model="obj_tipoProducto.desc" disabled/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <cadd-modal-var class="modal fade ng-isolate-scope" id="cadd-location-modal" tabla="'tipoproducto'" data="obj_tipoProducto"
+                                        aria-hidden="true" style="display: none;"></cadd-modal-var>
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
