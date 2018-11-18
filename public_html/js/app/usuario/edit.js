@@ -19,7 +19,7 @@ moduleUsuario.controller("usuarioEditController", [
             $scope.ape1 = response.data.message.ape1;
             $scope.ape2 = response.data.message.ape2;
             $scope.login = response.data.message.login;
-            $scope.pass = 'meh';
+            $scope.pass = 'mehhhhhh';
             $scope.obj_tipoUsuario_desc = response.data.message.obj_tipoUsuario.desc;
             $scope.obj_tipoUsuario_id = response.data.message.obj_tipoUsuario.id;
         }), function () {

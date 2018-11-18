@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioNewController", [
+moduleTipoproducto.controller("tipoproductoNewController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -19,7 +19,7 @@ moduleTipousuario.controller("tipousuarioNewController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=create',
+                url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=create',
                 params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.created = false;
