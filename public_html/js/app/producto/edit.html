@@ -44,7 +44,7 @@
                             <input type="text" class="form-control" id="precio" name="precio" 
                                    ng-model="precio" 
                                    ng-required="true" 
-                                   ng-pattern="/^[0-9]+(\.[0-9]{2})?$/"/>
+                                   ng-pattern="/^[1-9]+(\.[0-9]{2})?$/"/>
                             <div ng-show="!userForm.precio.$valid && !userForm.precio.$pattern" class="alert alert-danger" role="alert">
                                 Sólo se aceptan números enteros o con decimales (separados con un punto).
                             </div>
