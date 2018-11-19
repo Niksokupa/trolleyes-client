@@ -8,8 +8,20 @@
                     <td>{{ajaxData.id}}</td>
                 </tr>
                 <tr>
-                    <th>Descripción</th>
-                    <td >{{ajaxData.desc}}</td>
+                    <th>Fecha</th>
+                    <td >{{ajaxData.fecha}}</td>
+                </tr>
+                <tr>
+                    <th>IVA</th>
+                    <td >{{ajaxData.iva}}</td>
+                </tr>
+                <tr>
+                    <th>Usuario</th>
+                    <td >{{ajaxData.obj_usuario.nombre}} {{ajaxData.obj_usuario.ape1}} ({{ajaxData.obj_usuario.login}})</td>
+                </tr>
+                <tr>
+                    <th>Líneas</th>
+                    <td>{{ajaxLinea}} <a href="/trolleyes-client/public_html/factura/{{id}}/linea/plist" class="btn btn-light fas fa-eye" role="button"></a></td>
                 </tr>
             </table>
         </div>
@@ -18,4 +30,3 @@
         </div>
     </div>
 </main>
-<footer class="footer" ng-include="'js/app/footer.html'"></footer>
