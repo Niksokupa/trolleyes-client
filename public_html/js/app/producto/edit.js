@@ -21,8 +21,8 @@ moduleProducto.controller("productoEditController", [
             $scope.precio = response.data.message.precio;
             $scope.foto = response.data.message.foto;
             $scope.obj_tipoProducto = {
-                id: response.data.message.obj_TipoproductoBean.id,
-                desc: response.data.message.obj_TipoproductoBean.desc
+                id: response.data.message.obj_tipoProducto.id,
+                desc: response.data.message.obj_tipoProducto.desc
             }
         }), function (response) {
             console.log(response);
