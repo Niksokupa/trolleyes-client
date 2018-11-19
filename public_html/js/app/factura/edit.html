@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12" style="text-align: center">
-                    <h3>Editar tipos de usuario</h3>
+                    <h3>Editar factura</h3>
                 </div>
             </div>
             <hr />
@@ -16,12 +16,41 @@
                             <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
                         </div>
                         <div class="form-group">
-                            <label>Descripción</label>
-                            <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
-                            <div ng-show="!userForm.desc.$valid" class="alert alert-danger" role="alert">
-                                Descripción obligatoria
+                            <label>Fecha</label>
+                            <input type="text" class="form-control" id="fecha" name="fecha" ng-model="fecha" ng-required="true" />
+                            <div ng-show="!userForm.fecha.$valid" class="alert alert-danger" role="alert">
+                                Fecha obligatoria
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>IVA</label>
+                            <input type="text" class="form-control" id="iva" name="iva" ng-model="iva" ng-required="true" />
+                            <div ng-show="!userForm.iva.$valid" class="alert alert-danger" role="alert">
+                                IVA obligatorio
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Tipo usuario</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#cadd-location-modal">
+                                                <i class="fas fa-search-plus"></i>
+                                            </button>
+                                        </div>
+                                        <input style="width: 200px;" type="text" class="form-control " value="ID :" disabled>
+                                        <input type="text" class="form-control" id="obj_usuario.id" name="obj_usuario.id" ng-model="obj_usuario.id"/>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" value="Usuario :" disabled>
+                                        <input type="text" class="form-control" id="obj_usuario.nombre" name="obj_usuario.nombre" ng-model="obj_usuario.nombrecompleto" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <cadd-modal-var class="modal fade ng-isolate-scope" id="cadd-location-modal" tabla="'usuario'" data="obj_usuario"
+                                        aria-hidden="true" style="display: none;"></cadd-modal-var>
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Editar</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
@@ -32,7 +61,7 @@
             <div class="row d-flex justify-content-center" ng-show="!edited">
                 <div class="col-6">
                     <div class="alert alert-success d-flex justify-content-between flex-wrap pt-3 pb-2 mb-3" role="alert">
-                        <p>Registro creado con exito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        <p>Registro editado con exito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
                     </div>
                 </div>
             </div>
