@@ -4,7 +4,10 @@
     <div class="row">
         <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Tipos de usuarios</h2>
+                <h2>
+                    Linea(s) de la factura con ID: {{facturaid}} <br>
+                    Del usuario: {{usuario}}
+                </h2>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <button type="button" style="height:35px;" class="btn btn-dark btn-sm  mr-3" ng-click="resetOrder()">
                         <i class="fas fa-broom"></i>
@@ -44,7 +47,7 @@
                         </ul>
                     </nav>
                     <div class="pb-3">
-                        <button type="button" class="btn btn-primary" ng-click="create()">Crear tipo de usuario</button>
+                        <button type="button" class="btn btn-primary" ng-click="create()">Crear linea</button>
                     </div>
                 </div>
             </div>
@@ -76,15 +79,53 @@
                             <div class="row">
                                 <div class="col-12">
                                     <p>
-                                        Descripción
+                                        Cantidad
                                     </p>
                                 </div>
                                 <div class="col-12">
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('tipousuario.desc', 'asc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'asc')">
                                             <i class="fas fa-long-arrow-alt-up"></i>
                                         </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('tipousuario.desc', 'desc')">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>       
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Producto
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'desc')">
+                                            <i class="fas fa-long-arrow-alt-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>       
+                        <th>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        ID de Factura
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'asc')">
+                                            <i class="fas fa-long-arrow-alt-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'desc')">
                                             <i class="fas fa-long-arrow-alt-down"></i>
                                         </button>
                                     </div>
@@ -101,7 +142,9 @@
                     </tr>
                     <tr ng-repeat="fila in ajaxDataUsuarios">
                         <td>{{fila.id}}</td>
-                        <td>{{fila.desc}}</td>
+                        <td>{{fila.cantidad}}</td>
+                        <td><a href="/trolleyes-client/public_html/producto/view/{{fila.obj_producto.id}}">{{fila.obj_producto.desc}}</a></td>
+                        <td><a href="/trolleyes-client/public_html/factura/view/{{fila.obj_factura.id}}">{{fila.obj_factura.id}}</a></td>
                         <td>
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <a href="/trolleyes-client/public_html/{{ob}}/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a>

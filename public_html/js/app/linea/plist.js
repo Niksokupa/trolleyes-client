@@ -5,6 +5,8 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
         $scope.ob = "linea";
         $scope.logged = false;
         $scope.totalPages = 1;
+        $scope.facturaid = $routeParams.id;
+
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -31,7 +33,7 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
         }
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
         }
 
         $scope.ordena = function (order, align) {
@@ -42,13 +44,13 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
 
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific' + '&id=' + $scope.facturaid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -63,19 +65,21 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
             $scope.status = response.status;
         });
 
+        //getpagespecific
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpagespecific&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor + '&id=' + $scope.facturaid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
+            $scope.usuario = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.login + ")";
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
         $scope.update = function () {
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url(`factura` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
         //paginacion neighbourhood
@@ -97,21 +101,12 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
             }
         }
         $scope.create = function () {
-            $location.url($scope.ob + '/new');
+            $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + '/new');
         }
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;

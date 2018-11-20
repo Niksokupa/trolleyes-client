@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioEditController", [
+moduleFactura.controller("facturaEditController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -12,14 +12,16 @@ moduleTipousuario.controller("tipousuarioEditController", [
 
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=factura&op=get&id=${$routeParams.id}`
         }).then(function (response) {
-            console.log(response);
             $scope.id = response.data.message.id;
-            $scope.desc = response.data.message.desc;
-        }), function (response) {
-            console.log(response);
-        };
+            $scope.iva = response.data.message.iva;
+            $scope.fecha = response.data.message.fecha;
+            $scope.obj_usuario = {
+                id: response.data.message.obj_usuario.id,
+                nombrecompleto: response.data.message.obj_usuario.nombre + " " + response.data.message.obj_usuario.ape1
+            }
+        });
 
         $scope.update = function () {
             var json = {
@@ -31,7 +33,7 @@ moduleTipousuario.controller("tipousuarioEditController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob=factura&op=update',
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
