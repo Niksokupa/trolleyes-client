@@ -7,6 +7,8 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         $scope.totalPages = 1;
         $scope.userid = $routeParams.id;
 
+
+
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -52,22 +54,30 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         }
 
         //getcount
-        $http({
-            method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.userid
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDataUsuariosNumber = response.data.message;
-            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
-            if ($scope.page > $scope.totalPages) {
-                $scope.page = $scope.totalPages;
-                $scope.update();
-            }
-            pagination2();
-        }, function (response) {
-            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.userid
+            }).then(function (response) {
+                $scope.status = response.status;
+                $scope.ajaxDataUsuariosNumber = response.data.message;
+                if ($scope.ajaxDataUsuariosNumber === 0) {
+                    $scope.empty = true;
+                } else {
+                    $scope.empty = false;
+                }
+                $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
+                if ($scope.page > $scope.totalPages) {
+                    $scope.page = $scope.totalPages;
+                    $scope.update();
+                }
+                pagination2();
+            }), function (response) {
+                $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
+                $scope.status = response.status;
+            };
+
+
 
         //getpagespecific
         $http({
@@ -76,19 +86,18 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
-            $scope.usuario = $scope.ajaxDataUsuarios[0].obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_usuario.login + ")";
+            if ($scope.ajaxDataUsuarios.length > 0) {
+                $scope.usuario = $scope.ajaxDataUsuarios[0].obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_usuario.login + ")";
+            }
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
         $scope.update = function () {
-            $location.url(`factura` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url(`usuario/` + $scope.userid + `/` + $scope.ob + `/plistspecific/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
-        $scope.update = function () {
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        }
 
         //paginacion neighbourhood
         function pagination2() {
@@ -109,7 +118,7 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
             }
         }
         $scope.create = function () {
-            $location.url($scope.ob + '/new');
+            $location.url($scope.ob + '/new/' + $scope.userid);
         }
         $scope.isActive = toolService.isActive;
     }

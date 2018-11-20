@@ -1,33 +1,35 @@
 <header ng-include="'js/app/header.html'"></header>
-<main role="main" class="container">
+<main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
 
-    <div class="mx-auto" style="margin-top: 80px">
+    <div class="mx-auto">
+        <div class="pt-3 pb-2 mb-3 border-bottom" style="text-align: center;">
+            <h2>Eliminar usuario</h2>
+        </div> 
         <div class="table-responsive">
-                <table class="table table-striped table-sm">
+             <table class="table table-striped table-sm mx-auto mb-5" style="text-align: center; width: 450px;">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ajaxData.id}}</td></tr>
+                <tr>
+                    <th>DNI</th>
+                    <td>{{ajaxData.dni}}</td></tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ajaxData.nombre}}</td></tr>
+                <tr>
+                    <th>1er Apellido</th>
+                    <td>{{ajaxData.ape1}}</td></tr>
+                <tr>
+                    <th>2º Apellido</th>
+                    <td>{{ajaxData.ape2}}</td></tr>
+                <tr>
+                    <th>Login</th>
+                    <td>{{ajaxData.login}}</td></tr>
+                <tr>
+                    <th>Tipo de Usuario</th>
+                    <td>{{ajaxData.obj_tipoUsuario.desc}}</td></tr>
 
-            <tr class="text-center">
-                <th class="text-center">ID</th>
-                <td class="text-center">{{ajaxData.id}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">DNI</th>
-                <td class="text-center">{{ajaxData.dni}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">Nombre</th>
-                <td class="text-center">{{ajaxData.nombre}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">1er Apellido</th>
-                <td class="text-center">{{ajaxData.ape1}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">2º Apellido</th>
-                <td class="text-center">{{ajaxData.ape2}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">Login</th>
-                <td class="text-center">{{ajaxData.login}}</td></tr>
-            <tr class="text-center">
-                <th class="text-center">Tipo de Usuario</th>
-                <td class="text-center">{{ajaxData.obj_tipoUsuario.desc}}</td></tr>
-
-        </table>
+            </table>
         </div>
         <div class="row" ng-show="deleted">
             <div class="col-12">

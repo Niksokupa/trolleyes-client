@@ -39,15 +39,6 @@ moduleProducto.controller("productoNewController", [
             $scope.logged = true;
         }
 
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=producto&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
-        }
-
         $scope.isActive = toolService.isActive;
     }
 ]);

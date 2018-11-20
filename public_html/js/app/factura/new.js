@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipousuario.controller("tipousuarioNewController", [
+moduleFactura.controller("facturaNewController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -9,9 +9,13 @@ moduleTipousuario.controller("tipousuarioNewController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
         $scope.logged = false;
+        $scope.obj_usuario.id = $routeParams.id;
         $scope.create = function () {
             var json = {
-                desc: $scope.desc
+                id: $scope.id,
+                fecha: $scope.fecha,
+                iva: $scope.iva,
+                id_usuario: $scope.obj_usuario.id,
             }
 
             $http({
@@ -19,29 +23,19 @@ moduleTipousuario.controller("tipousuarioNewController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=create',
+                url: 'http://localhost:8081/trolleyes/json?ob=factura&op=create',
                 params: {json: JSON.stringify(json)}
-            }).then(function (response) {
+            }).then(function (response, data) {
                 $scope.created = false;
-                $scope.id = response.data.message.id;
             }, function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
         }
-
+        
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;
