@@ -76,7 +76,7 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
- //           $scope.usuario = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.login + ")";
+            $scope.usuario = $scope.ajaxDataUsuarios[0].obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_usuario.login + ")";
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';

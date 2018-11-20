@@ -5,8 +5,8 @@
         <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h2>
-                    Linea(s) de la factura con ID: {{facturaid}} <br>
-                    Del usuario: {{usuario}}
+                    Linea(s) de la factura con ID: <a href="/trolleyes-client/public_html/factura/view/{{facturaid}}">{{facturaid}}</a> <br>
+                    Del usuario: <a href="/trolleyes-client/public_html/usuario/view/{{userid}}">{{usuario}}</a>
                 </h2>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <button type="button" style="height:35px;" class="btn btn-dark btn-sm  mr-3" ng-click="resetOrder()">

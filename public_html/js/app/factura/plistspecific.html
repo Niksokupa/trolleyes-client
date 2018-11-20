@@ -4,7 +4,7 @@
     <div class="row">
         <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Lista de facturas</h2>
+                <h2>Facturas del usuario <a href="/trolleyes-client/public_html/usuario/view/{{userid}}">{{usuario}}</a></h2>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <button type="button" style="height:35px;" class="btn btn-dark btn-sm  mr-3" ng-click="resetOrder()">
                         <i class="fas fa-broom"></i>
@@ -114,25 +114,6 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>
-                                            Usuario
-                                        </p>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <button type="button" class="btn btn-light" ng-click="ordena('id_usuario', 'asc')">
-                                                <i class="fas fa-long-arrow-alt-up"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-light" ng-click="ordena('id_usuario', 'desc')">
-                                                <i class="fas fa-long-arrow-alt-down"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th> 
-                            <th>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>
                                             Lineas
                                         </p>
                                     </div>
@@ -160,7 +141,6 @@
                             <td>{{fila.id}}</td>
                             <td>{{fila.fecha}}</td>
                             <td>{{fila.iva}}</td>
-                            <td><a href="/trolleyes-client/public_html/usuario/view/{{fila.obj_usuario.id}}">{{fila.obj_usuario.nombre}} {{fila.obj_usuario.ape1}} ({{fila.obj_usuario.login}})</a></td>
                             <td><a href="/trolleyes-client/public_html/factura/{{fila.id}}/linea/plist" class="btn btn-outline-dark" role="button">{{fila.numLineas}}</a></td>
                             <td>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">

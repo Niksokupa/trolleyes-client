@@ -73,6 +73,7 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
             $scope.usuario = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.login + ")";
+            $scope.userid = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.id;
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
