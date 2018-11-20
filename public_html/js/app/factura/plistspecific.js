@@ -1,9 +1,11 @@
 'use strict'
 
-moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
+moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
     function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
         $scope.logged = false;
+        $scope.ob = "factura";
         $scope.totalPages = 1;
+        $scope.userid = $routeParams.id;
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
@@ -29,11 +31,14 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             }
         }
 
-
-        $scope.resetOrder = function () {
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page);
+        if (oSessionService.getUserName() !== "") {
+            $scope.loggeduser = oSessionService.getUserName();
+            $scope.logged = true;
         }
 
+        $scope.resetOrder = function () {
+            $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
+        }
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor == "") {
@@ -43,13 +48,13 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
 
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getcount'
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.userid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -63,28 +68,27 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
             $scope.status = response.status;
         });
-        
 
-
+        //getpagespecific
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getpagespecific&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor + '&id=' + $scope.userid
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
+ //           $scope.usuario = $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_factura.obj_usuario.login + ")";
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
-
-
         $scope.update = function () {
-            $location.url(`usuario/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url(`factura` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
-
-
+        $scope.update = function () {
+            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+        }
 
         //paginacion neighbourhood
         function pagination2() {
@@ -104,29 +108,10 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
                 }
             }
         }
-
         $scope.create = function () {
-            $location.url(`usuario/new`);
+            $location.url($scope.ob + '/new');
         }
-
-        if (oSessionService.getUserName() !== "") {
-            $scope.loggeduser = oSessionService.getUserName();
-            $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
-        }
-
         $scope.isActive = toolService.isActive;
-
-
-
     }
 
 
