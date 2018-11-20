@@ -1,6 +1,6 @@
 "use strict";
 
-moduleFactura.controller("facturaEditController", [
+moduleTipoproducto.controller("tipoproductoEditController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -12,30 +12,23 @@ moduleFactura.controller("facturaEditController", [
 
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=factura&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=${$routeParams.id}`
         }).then(function (response) {
             $scope.id = response.data.message.id;
-            $scope.iva = response.data.message.iva;
-            $scope.fecha = response.data.message.fecha;
-            $scope.obj_usuario = {
-                id: response.data.message.obj_usuario.id,
-                nombrecompleto: response.data.message.obj_usuario.nombre + " " + response.data.message.obj_usuario.ape1
-            }
+            $scope.desc = response.data.message.desc;
         });
 
         $scope.update = function () {
             var json = {
                 id: $scope.id,
-                iva: $scope.iva,
-                fecha: $scope.fecha,
-                id_usuario: $scope.obj_usuario.id
+                desc: $scope.desc
             }
             $http({
                 method: 'GET',
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=factura&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=update',
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
