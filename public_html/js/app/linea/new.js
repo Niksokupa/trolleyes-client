@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipoproducto.controller("tipoproductoNewController", [
+moduleLinea.controller("lineaNewController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -9,6 +9,7 @@ moduleTipoproducto.controller("tipoproductoNewController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
         $scope.logged = false;
+        
         $scope.create = function () {
             var json = {
                 desc: $scope.desc
@@ -19,7 +20,7 @@ moduleTipoproducto.controller("tipoproductoNewController", [
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=create',
+                url: 'http://localhost:8081/trolleyes/json?ob=linea&op=create',
                 params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.created = false;
@@ -35,13 +36,38 @@ moduleTipoproducto.controller("tipoproductoNewController", [
             $scope.logged = true;
         }
 
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
+        $scope.productoRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=producto&op=get&id=' + $scope.obj_producto.id
+                }).then(function (response) {
+                    $scope.obj_producto = response.data.message;
+                    form.userForm.obj_producto.$setValidity('valid', true);
+                }, function (response) {
+                    form.userForm.obj_producto.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_producto.$setValidity('valid', true);
+            }
+        }
+        
+        $scope.facturaRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=factura&op=get&id=' + $scope.obj_factura.id
+                }).then(function (response) {
+                    $scope.obj_factura = response.data.message;
+                    form.userForm.obj_factura.$setValidity('valid', true);
+                }, function (response) {
+                    form.userForm.obj_factura.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_factura.$setValidity('valid', true);
+            }
         }
 
         $scope.isActive = toolService.isActive;
