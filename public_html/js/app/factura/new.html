@@ -18,41 +18,59 @@
                         <div class="form-group">
                             <label>Fecha</label>
                             <input type="text" class="form-control" id="fecha" name="fecha" ng-model="fecha" ng-required="true" />
-                            <div ng-show="!userForm.fecha.$valid" class="alert alert-danger" role="alert">
+                            <div ng-show="!userForm.fecha.$valid && !userForm.fecha.$pristine" class="alert alert-danger" role="alert">
                                 Fecha obligatoria
                             </div>
                         </div>
                         <div class="form-group">
                             <label>IVA</label>
                             <input type="text" class="form-control" id="iva" name="iva" ng-model="iva" ng-required="true" />
-                            <div ng-show="!userForm.iva.$valid" class="alert alert-danger" role="alert">
+                            <div ng-show="!userForm.iva.$valid && !userForm.iva.$pristine" class="alert alert-danger" role="alert">
                                 IVA obligatorio
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Usuario</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#cadd-location-modal">
-                                                <i class="fas fa-search-plus"></i>
-                                            </button>
-                                        </div>
-                                        <input style="width: 200px;" type="text" class="form-control " value="ID :" disabled>
-                                        <input type="text" class="form-control" id="obj_usuario.id" name="obj_usuario.id" ng-model="obj_usuario.id"/>
+                        <label for="obj_usuario">Usuario:</label>
+                        <div class="form-group row" style="padding-left:15px;">
+                            <usuario-selection 
+                                class="modal fade" 
+                                id="cadd-location-modal" 
+                                obj="obj_usuario"
+                                on-usuario-set="usuarioRefresh(this,false)">                          
+                            </usuario-selection>
+
+                            <div class="control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              data-toggle="modal"
+                                              data-target="#cadd-location-modal">
+                                            <span class="fas fa-search"></span>
+                                        </span>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" value="Usuario :" disabled>
-                                        <input type="text" class="form-control" id="obj_usuario.nombre" name="obj_usuario.nombre" ng-model="obj_usuario.nombrecompleto" disabled/>
+                                    <input ng-model="obj_usuario.id"
+                                           ng-change="usuarioRefresh(this, true)"
+                                           aria-describedby="basic-addon2"
+                                           class="form-control col-sm-2"
+                                           id="obj_usuario"
+                                           name="obj_usuario"
+                                           type="text"
+                                           ng-required
+                                           ng-model-options="{debounce: 1000}"
+                                           maxlength="2" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="/trolleyes-client/public_html/usuario/view/{{obj_usuario.id}}">
+                                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                                Usuario: {{obj_usuario.nombre}}
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
+                                <div ng-show="!userForm.obj_usuario.$valid">Usuario no válido</div>
                             </div>
                         </div>
-                        <cadd-modal-var class="modal fade ng-isolate-scope" id="cadd-location-modal" tabla="'usuario'" data="obj_usuario"
-                                        aria-hidden="true" style="display: none;"></cadd-modal-var>
                         <div class="d-flex justify-content-between flex-wrap">
-                            <button ng-click="update()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Editar</button>
+                            <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
                         </div>
                     </form>
@@ -61,7 +79,7 @@
             <div class="row d-flex justify-content-center" ng-show="!created">
                 <div class="col-6">
                     <div class="alert alert-success d-flex justify-content-between flex-wrap pt-3 pb-2 mb-3" role="alert">
-                        <p>Registro editado con exito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                        <p>Factura creada con exito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
                     </div>
                 </div>
             </div>

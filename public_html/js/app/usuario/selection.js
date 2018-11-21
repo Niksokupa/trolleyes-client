@@ -1,17 +1,17 @@
 'use strict'
-moduleComponent.component('tipousuarioSelection', {
-    templateUrl: 'js/app/tipousuario/selection.html',
+moduleComponent.component('usuarioSelection', {
+    templateUrl: 'js/app/usuario/selection.html',
     controllerAs: 'c',
     controller: cController,
     bindings: {
         obj: '=',
-        onTipousuarioSet: '&'
+        onUsuarioSet: '&'
     },
 });
 
 function cController($http) {
     var self = this;
-    self.ob = "tipousuario";
+    self.ob = "usuario";
     self.page = 1;
     self.totalPages = 1;
     self.orderURLServidor = "";
@@ -45,10 +45,10 @@ function cController($http) {
         self.data = response.data.message || 'Request failed';
     });
 
-    self.save = function (id, desc) {
+    self.save = function (id, nombre) {
         self.obj.id = id;
-        self.obj.desc = desc;
-        self.onTipousuarioSet();
+        self.obj.nombre = nombre;
+        self.onUsuarioSet();
     };
 
 
