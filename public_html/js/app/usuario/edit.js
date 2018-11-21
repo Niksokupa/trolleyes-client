@@ -9,6 +9,20 @@ moduleUsuario.controller("usuarioEditController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.edited = true;
         $scope.logged = false;
+
+        $scope.id = $routeParams.id;
+
+        $scope.mostrar = false;
+        $scope.activar = true;
+        $scope.ajaxData = "";
+
+        $scope.obj = null;
+        $scope.ob = 'usuario';
+        $scope.op = 'edit';
+        $scope.result = null;
+        $scope.title = "Edición de usuario";
+        $scope.icon = "fa-file-text-o";
+
         $http({
             method: "GET",
             url: `http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=${$routeParams.id}`
@@ -30,6 +44,7 @@ moduleUsuario.controller("usuarioEditController", [
         $scope.isActive = toolService.isActive;
 
         $scope.update = function () {
+            console.log($scope.dni);
             var json = {
                 id: $scope.id,
                 dni: $scope.dni,
@@ -51,6 +66,35 @@ moduleUsuario.controller("usuarioEditController", [
                 $scope.edited = false;
             })
         }
+
+        $scope.tipoUsuarioRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=' + $scope.obj_tipoUsuario.id
+                }).then(function (response) {
+                    $scope.obj_tipoUsuario = response.data.message;
+                    form.userForm.obj_tipousuario.$setValidity('valid', true);
+                }, function (response) {
+                    //$scope.status = response.status;
+                    form.userForm.obj_tipousuario.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_tipousuario.$setValidity('valid', true);
+            }
+        }
+        
+        $scope.back = function () {
+            window.history.back();
+        };
+        $scope.close = function () {
+            $location.path('/home');
+        };
+        $scope.plist = function () {
+            $location.path('/usuario/plist');
+        };
+
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
