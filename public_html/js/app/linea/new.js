@@ -9,7 +9,13 @@ moduleLinea.controller("lineaNewController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
         $scope.logged = false;
- //       $scope.obj_factura.id = $routeParams.id;
+        $scope.obj_factura = {
+            id: $routeParams.id,
+            cantidad: null
+        }
+        $scope.obj_producto = {
+            id: null
+        }
         
         $scope.create = function () {
             var json = {
