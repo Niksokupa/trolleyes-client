@@ -55,5 +55,22 @@ moduleProducto.controller("productoEditController", [
             $scope.loggeduser = oSessionService.getUserName();
             $scope.logged = true;
         }
+
+        $scope.tipoProductoRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=' + $scope.obj_tipoProducto.id
+                }).then(function (response) {
+                    $scope.obj_tipoProducto = response.data.message;
+                    form.userForm.obj_tipoProducto.$setValidity('valid', true);
+                }, function (response) {
+                    form.userForm.obj_tipoProducto.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_tipoProducto.$setValidity('valid', true);
+            }
+        }
     }
 ]);

@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12" style="text-align: center">
-                    <h3>Nueva línea de factura</h3>
+                    <h3>Nueva línea para la factura {{facturaid}}</h3>
                 </div>
             </div>
             <hr />
@@ -61,49 +61,6 @@
                                 <div ng-show="!userForm.obj_producto.$valid">Producto no válido</div>
                             </div>
                         </div>
-                        
-                        <!--FACTURA-->
-                        
-                        <label for="obj_factura">Factura:</label>
-                        <div class="form-group row" style="padding-left:15px;">
-                            <factura-selection 
-                                class="modal fade" 
-                                id="cadd-location-modal" 
-                                obj="obj_factura"
-                                on-factura-set="facturaRefresh(this,false)">                          
-                            </factura-selection>
-                            <div class="control">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"
-                                              data-toggle="modal"
-                                              data-target="#cadd-location-modal">
-                                            <span class="fas fa-search"></span>
-                                        </span>
-                                    </div>
-                                    <input ng-model="obj_factura.id"
-                                           ng-change="facturaRefresh(this, true)"
-                                           aria-describedby="basic-addon2"
-                                           class="form-control col-sm-2"
-                                           id="obj_factura"
-                                           name="obj_factura"
-                                           type="text"
-                                           ng-required
-                                           ng-model-options="{debounce: 1000}"
-                                           maxlength="2" />
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <a href="/trolleyes-client/public_html/factura/view/{{obj_factura.id}}">
-                                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
-                                                Factura: {{obj_factura.id}}
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div ng-show="!userForm.obj_factura.$valid">Factura no válida</div>
-                            </div>
-                        </div>
-
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>

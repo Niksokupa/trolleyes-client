@@ -9,7 +9,7 @@
             </div>
             <hr />
             <div class="row" ng-show="created">
-                <div class="col-3 mx-auto">
+                <div class="col-6 mx-auto">
                     <form name="userForm">
                         <div class="form-group" ng-class="{ 'has-error' : userForm.dni.$invalid && !userForm.dni.$pristine }">
                             <label>DNI</label>
@@ -55,28 +55,48 @@
                                 La contraseña es obligatoria.
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Tipo usuario</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#cadd-location-modal">
-                                                <i class="fas fa-search-plus"></i>
-                                            </button>
-                                        </div>
-                                        <input style="width: 200px;" type="text" class="form-control " value="ID :" disabled>
-                                        <input type="text" class="form-control " id="obj_tipoUsuario.id" name="obj_tipoUsuario.id" ng-model="obj_tipoUsuario.id"/>
+                        <!--TIPOUSUARIO-->
+
+                        <label for="obj_tipoUsuario">Tipo de usuario:</label>
+                        <div class="form-group row" style="padding-left:15px;">
+                            <tipousuario-selection 
+                                class="modal fade" 
+                                id="cadd-location-modal" 
+                                obj="obj_tipoUsuario"
+                                on-tipousuario-set="tipoUsuarioRefresh(this,false)">                          
+                            </tipousuario-selection>
+
+                            <div class="control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              data-toggle="modal"
+                                              data-target="#cadd-location-modal">
+                                            <span class="fas fa-search"></span>
+                                        </span>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control " value="Desc :" disabled>
-                                        <input type="text" class="form-control " id="obj_tipoUsuario.desc" name="obj_tipoUsuario.desc" ng-model="obj_tipoUsuario.desc"/>
+                                    <input ng-model="obj_tipoUsuario.id"
+                                           ng-change="tipoUsuarioRefresh(this, true)"
+                                           aria-describedby="basic-addon2"
+                                           class="form-control col-sm-2"
+                                           id="obj_tipoUsuario"
+                                           name="obj_tipoUsuario"
+                                           type="text"
+                                           ng-required
+                                           ng-model-options="{debounce: 1000}"
+                                           maxlength="2" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="/trolleyes-client/public_html/tipousuario/view/{{obj_tipoUsuario.id}}">
+                                                <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                                                Tipo de usuario: {{obj_tipoUsuario.desc}}
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
+                                <div ng-show="!userForm.obj_tipoUsuario.$valid">Tipo de usuario no válido</div>
                             </div>
                         </div>
-                        <cadd-modal-var class="modal fade ng-isolate-scope" id="cadd-location-modal" tabla="'tipousuario'" data="obj_tipoUsuario"
-                                        aria-hidden="true" style="display: none;"></cadd-modal-var>
                         <div class="d-flex justify-content-between flex-wrap">
                             <button ng-click="create()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
@@ -87,7 +107,7 @@
             <div class="row" ng-show="!created">
                 <div class="col-12">
                     <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
-                        <p>Registro creado con exito<p> <button type="button" class="btn btn-light" onclick="window.history.back()">Volver</button>
+                        <p>Registro creado con éxito con número de ID: {{id}}<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
                     </div>
                 </div>
             </div>

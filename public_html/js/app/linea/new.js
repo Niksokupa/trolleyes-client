@@ -9,6 +9,7 @@ moduleLinea.controller("lineaNewController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
         $scope.logged = false;
+        $scope.facturaid = $routeParams.id;
         $scope.obj_factura = {
             id: $routeParams.id,
             cantidad: null
@@ -62,22 +63,6 @@ moduleLinea.controller("lineaNewController", [
             }
         }
         
-        $scope.facturaRefresh = function (f, consultar) {
-            var form = f;
-            if (consultar) {
-                $http({
-                    method: 'GET',
-                    url: 'http://localhost:8081/trolleyes/json?ob=factura&op=get&id=' + $scope.obj_factura.id
-                }).then(function (response) {
-                    $scope.obj_factura = response.data.message;
-                    form.userForm.obj_factura.$setValidity('valid', true);
-                }, function (response) {
-                    form.userForm.obj_factura.$setValidity('valid', false);
-                });
-            } else {
-                form.userForm.obj_factura.$setValidity('valid', true);
-            }
-        }
 
         $scope.isActive = toolService.isActive;
     }
