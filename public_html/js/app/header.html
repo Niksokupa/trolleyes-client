@@ -6,38 +6,29 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" ng-class="{'active': isActive('/')}">
-                <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item" ng-class="{'active': isActive('/home')}">
+                <a class="nav-link" href="home">Home <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item" ng-class="{'active': 
-                    isActive('/tipousuario/plist') ||
-                        isActive('/tipousuario/view/') ||
-                        isActive('/tipousuario/edit/') ||
-                        isActive('/tipousuario/remove/')}">
-                <a class="nav-link" href="tipousuario/plist">Tipousuario</a>
+                    isActive('/tipousuario/')}">
+                <a class="nav-link" href="tipousuario/plist">Tipousuario <i class="fas fa-users fa-1x"></i></a>
             </li>
             <li class="nav-item" ng-class="{'active': 
-                    isActive('/usuario/plist') || 
-                    isActive('/usuario/view/') || 
-                    isActive('/usuario/edit/') || 
-                    isActive('/usuario/login/') || 
-                    isActive('/usuario/logout/') || 
-                    isActive('/usuario/remove/')}">
-                <a class="nav-link" href="usuario/plist">Usuario</a>
+                    isActive('/usuario/')}">
+                <a class="nav-link" href="usuario/plist">Usuario <i class="fas fa-user"></i></a>
             </li>
             <li class="nav-item" ng-class="{'active': 
-                    isActive('/factura/plist') ||
-                        isActive('/factura/view/')}">
-                <a class="nav-link" href="factura/plist">Factura</a>
+                    isActive('/factura/')}">
+                <a class="nav-link" href="factura/plist">Factura <i class="fas fa-file-invoice-dollar"></i></a>
             </li>
             <li class="nav-item" ng-class="{'active': 
-                    isActive('/producto/plist') ||
-                        isActive('/producto/view/')}">
-                <a class="nav-link" href="producto/plist">Producto</a>
+                    isActive('/producto/')}">
+                <a class="nav-link" href="producto/plist">Producto <i class="fas fa-box-open"></i></a>
             </li>
-            <li class="nav-item" ng-class="{'active': isActive('/tipoproducto/plist')}">
-                <a class="nav-link" href="tipoproducto/plist">Tipoproducto</a>
+            <li class="nav-item" ng-class="{'active': 
+                    isActive('/tipoproducto/')}">
+                <a class="nav-link" href="tipoproducto/plist">Tipoproducto <i class="fas fa-boxes"></i></a>
             </li>
 
         </ul>
