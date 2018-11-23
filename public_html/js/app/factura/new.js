@@ -9,8 +9,9 @@ moduleFactura.controller("facturaNewController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.created = true;
         $scope.logged = false;
-        if ($routeParams.id) {
-            $scope.obj_usuario.id = $routeParams.id;
+        
+        $scope.obj_usuario = {
+            id: $routeParams.id
         }
 
         $scope.create = function () {
