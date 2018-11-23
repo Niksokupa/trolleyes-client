@@ -21,8 +21,6 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/app/usuario/remove.html', controller: 'usuarioRemoveController'});
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/usuario/plist.html', controller: 'usuarioPlistController'});
 
-
-
         //FACTURA
         $routeProvider.when('/factura/plist', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController'});
         $routeProvider.when('/factura/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController'});
@@ -35,8 +33,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //LINEA
         $routeProvider.when('/factura/:id/linea/plist', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController'});
         $routeProvider.when('/factura/:id/linea/new', {templateUrl: 'js/app/linea/new.html', controller: 'lineaNewController'});
+        $routeProvider.when('/factura/:id/linea/view/:id', {templateUrl: 'js/app/linea/view.html', controller: 'lineaViewController'});
+        $routeProvider.when('/factura/:id/linea/edit/:id', {templateUrl: 'js/app/linea/edit.html', controller: 'lineaEditController'});
+        $routeProvider.when('/factura/:id/linea/remove/:id', {templateUrl: 'js/app/linea/remove.html', controller: 'lineaRemoveController'});
         $routeProvider.when('/factura/:id/linea/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/linea/plist.html', controller: 'lineaPlistController'});
-
 
         //TIPOPRODUCTO
         $routeProvider.when('/tipoproducto/plist', {templateUrl: 'js/app/tipoproducto/plist.html', controller: 'tipoproductoPlistController'});
