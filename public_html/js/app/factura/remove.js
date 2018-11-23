@@ -22,6 +22,7 @@ moduleFactura.controller('facturaRemoveController', ['$scope', '$http', '$locati
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

@@ -102,6 +102,7 @@ moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http',
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

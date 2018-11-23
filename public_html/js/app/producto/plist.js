@@ -32,6 +32,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

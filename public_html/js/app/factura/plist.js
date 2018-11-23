@@ -32,6 +32,7 @@ moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$locatio
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

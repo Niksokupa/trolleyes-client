@@ -22,6 +22,7 @@ moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$loca
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

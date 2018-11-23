@@ -44,6 +44,7 @@ moduleUsuario.controller("usuarioNewController", [
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

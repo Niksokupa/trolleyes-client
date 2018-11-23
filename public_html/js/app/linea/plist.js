@@ -107,6 +107,7 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 

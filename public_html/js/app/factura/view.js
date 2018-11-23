@@ -42,6 +42,7 @@ moduleFactura.controller('facturaViewController', ['$scope', '$http', 'toolServi
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
     }

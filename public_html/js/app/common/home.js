@@ -8,6 +8,7 @@ moduleCommon.controller('homeController', ['$scope', '$location', 'toolService',
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
+            $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
 
