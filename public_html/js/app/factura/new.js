@@ -16,9 +16,9 @@ moduleFactura.controller("facturaNewController", [
         $scope.create = function () {
             var json = {
                 id: $scope.id,
-                fecha: $scope.fecha,
+                fecha: $scope.myDate,
                 iva: $scope.iva,
-                id_usuario: $scope.obj_usuario.id,
+                id_usuario: $scope.obj_usuario.id
             }
 
             $http({
