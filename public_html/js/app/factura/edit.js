@@ -16,9 +16,10 @@ moduleFactura.controller("facturaEditController", [
         }).then(function (response) {
             $scope.id = response.data.message.id;
             $scope.iva = response.data.message.iva;
-            $scope.fecha = response.data.message.fecha;
+            $scope.myDate = new Date(response.data.message.fecha);
             $scope.obj_usuario = {
                 id: response.data.message.obj_usuario.id,
+                nombre: response.data.message.obj_usuario.nombre,
                 nombrecompleto: response.data.message.obj_usuario.nombre + " " + response.data.message.obj_usuario.ape1
             }
         });
@@ -27,7 +28,7 @@ moduleFactura.controller("facturaEditController", [
             var json = {
                 id: $scope.id,
                 iva: $scope.iva,
-                fecha: $scope.fecha,
+                fecha: $scope.myDate,
                 id_usuario: $scope.obj_usuario.id
             }
             $http({
@@ -47,13 +48,21 @@ moduleFactura.controller("facturaEditController", [
             $scope.logged = true;
         }
 
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
+        $scope.usuarioRefresh = function (f, consultar) {
+            var form = f;
+            if (consultar) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=' + $scope.obj_usuario.id
+                }).then(function (response) {
+                    $scope.obj_usuario = response.data.message;
+                    form.userForm.obj_usuario.$setValidity('valid', true);
+                }, function (response) {
+                    form.userForm.obj_usuario.$setValidity('valid', false);
+                });
+            } else {
+                form.userForm.obj_usuario.$setValidity('valid', true);
+            }
         }
 
         $scope.isActive = toolService.isActive;
