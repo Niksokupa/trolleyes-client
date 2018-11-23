@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 ml-sm-auto col-lg-12">
+            <div class="col-md-12 ml-sm-auto col-lg-12" ng-show="!empty">
                 <div class="row d-flex justify-content-between flex-wrap align-items-center">
                     <nav aria-label="paginacion">
                         <ul class="pagination">
@@ -52,110 +52,112 @@
                 </div>
             </div>
 
-            <div class="row mx-auto">
-            <div class="table-responsive">
-                <table class="table table-striped table-sm mx-auto"  style="text-align: center; width: 500px;">
-                    <tr>
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        ID
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
+            <div class="row mx-auto"  ng-show="!empty">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mx-auto"  style="text-align: center; width: 500px;">
+                        <tr>
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            ID
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        Cantidad
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
+                            </th>
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Cantidad
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('cantidad', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </th>       
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        Producto
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
+                            </th>       
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            Producto
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_producto', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </th>       
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        ID de Factura
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
+                            </th>       
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            ID de Factura
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'asc')">
+                                                <i class="fas fa-long-arrow-alt-up"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-light" ng-click="ordena('id_factura', 'desc')">
+                                                <i class="fas fa-long-arrow-alt-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </th>       
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>Acciones</p>
+                            </th>       
+                            <th>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>Acciones</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr ng-repeat="fila in ajaxDataUsuarios">
-                        <td>{{fila.id}}</td>
-                        <td>{{fila.cantidad}}</td>
-                        <td><a href="/trolleyes-client/public_html/producto/view/{{fila.obj_producto.id}}">{{fila.obj_producto.desc}}</a></td>
-                        <td><a href="/trolleyes-client/public_html/factura/view/{{fila.obj_factura.id}}">{{fila.obj_factura.id}}</a></td>
-                        <td>
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <a href="/trolleyes-client/public_html/{{ob}}/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a>
-                            <a href="/trolleyes-client/public_html/{{ob}}/edit/{{fila.id}}" class="btn btn-light fas fa-edit" role="button"></a>
-                            <a href="/trolleyes-client/public_html/{{ob}}/remove/{{fila.id}}" class="btn btn-light fas fa-trash" role="button"></a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
+                            </th>
+                        </tr>
+                        <tr ng-repeat="fila in ajaxDataUsuarios">
+                            <td>{{fila.id}}</td>
+                            <td>{{fila.cantidad}}</td>
+                            <td><a href="/trolleyes-client/public_html/producto/view/{{fila.obj_producto.id}}">{{fila.obj_producto.desc}}</a></td>
+                            <td><a href="/trolleyes-client/public_html/factura/view/{{fila.obj_factura.id}}">{{fila.obj_factura.id}}</a></td>
+                            <td>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="/trolleyes-client/public_html/{{ob}}/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a>
+                                    <a href="/trolleyes-client/public_html/{{ob}}/edit/{{fila.id}}" class="btn btn-light fas fa-edit" role="button"></a>
+                                    <a href="/trolleyes-client/public_html/{{ob}}/remove/{{fila.id}}" class="btn btn-light fas fa-trash" role="button"></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            <div class="alert alert-warning d-flex justify-content-between flex-wrap align-items-center pt-2 pb-2 mb-3" role="alert" ng-show="empty">
+                <p>Esta factura no dispone de ninguna línea.</p> <button type="button" class="btn btn-primary" ng-click="create()">Crear línea</button>
             </div>
         </main>
     </div>

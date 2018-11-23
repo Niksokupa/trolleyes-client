@@ -54,6 +54,11 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
+            if ($scope.ajaxDataUsuariosNumber === 0) {
+                    $scope.empty = true;
+                } else {
+                    $scope.empty = false;
+                }
             $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
             if ($scope.page > $scope.totalPages) {
                 $scope.page = $scope.totalPages;
@@ -80,7 +85,7 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
         });
 
         $scope.update = function () {
-            $location.url(`factura` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url(`factura/` + $scope.facturaid + `/` + $scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
         //paginacion neighbourhood

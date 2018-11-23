@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12" style="text-align: center">
-                    <h3>Editar tipos de producto</h3>
+                    <h3>Editando la línea {{lineaid}} para la factura {{obj_factura.id}}</h3>
                 </div>
             </div>
             <hr />
@@ -12,14 +12,53 @@
                 <div class="col-4 mx-auto">
                     <form name="userForm">
                         <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
+                            <label>Cantidad</label>
+                            <input type="text" class="form-control" id="cantidad" name="cantidad" ng-model="cantidad" ng-required="true" />
+                            <div ng-show="!userForm.cantidad.$valid && !userForm.cantidad.$pristine" class="alert alert-danger" role="alert">
+                                Campo obligatorio.
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Descripción</label>
-                            <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
-                            <div ng-show="!userForm.desc.$valid" class="alert alert-danger" role="alert">
-                                Descripción obligatoria
+                        
+                        <!--PRODUCTO-->
+                        
+                        <label for="obj_producto">Producto:</label>
+                        <div class="form-group row" style="padding-left:15px;">
+                            <producto-selection 
+                                class="modal fade" 
+                                id="cadd-location-modal" 
+                                obj="obj_producto"
+                                on-producto-set="productoRefresh(this,false)">                          
+                            </producto-selection>
+
+                            <div class="control">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              data-toggle="modal"
+                                              data-target="#cadd-location-modal">
+                                            <span class="fas fa-search"></span>
+                                        </span>
+                                    </div>
+                                    <input ng-model="obj_producto.id"
+                                           ng-change="productoRefresh(this, true)"
+                                           aria-describedby="basic-addon2"
+                                           class="form-control col-sm-2"
+                                           id="obj_producto"
+                                           name="obj_producto"
+                                           type="text"
+                                           ng-required
+                                           ng-model-options="{debounce: 1000}"
+                                           maxlength="2" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <a href="/trolleyes-client/public_html/producto/view/{{obj_producto.id}}">
+                                                <span class="p-2 bd-highlight"><i class="fas fa-box-open"></i></span>
+                                                Producto: {{obj_producto.desc}}
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div ng-show="!userForm.obj_producto.$valid">Producto no válido</div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between flex-wrap">
@@ -31,8 +70,8 @@
             </div>
             <div class="row d-flex justify-content-center" ng-show="!edited">
                 <div class="col-6">
-                    <div class="alert alert-success d-flex justify-content-between flex-wrap pt-3 pb-2 mb-3" role="alert">
-                        <p>Registro editado con exito<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
+                    <div class="alert alert-success d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3" role="alert">
+                        <p>Registro editado con éxito.<p> <button type="button" class="btn btn-secondary" onclick="window.history.back()">Volver</button>
                     </div>
                 </div>
             </div>

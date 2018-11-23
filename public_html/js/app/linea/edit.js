@@ -1,6 +1,6 @@
 "use strict";
 
-moduleTipoproducto.controller("tipoproductoEditController", [
+moduleLinea.controller("lineaEditController", [
     "$scope",
     "$http",
     "$routeParams",
@@ -9,26 +9,36 @@ moduleTipoproducto.controller("tipoproductoEditController", [
     function ($scope, $http, $routeParams, toolService, oSessionService) {
         $scope.edited = true;
         $scope.logged = false;
+        $scope.lineaid = $routeParams.id;
 
         $http({
             method: "GET",
-            url: `http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=${$routeParams.id}`
+            url: `http://localhost:8081/trolleyes/json?ob=linea&op=get&id=${$routeParams.id}`
         }).then(function (response) {
             $scope.id = response.data.message.id;
-            $scope.desc = response.data.message.desc;
+            $scope.cantidad = response.data.message.cantidad;
+            $scope.obj_factura = {
+                id: response.data.message.obj_factura.id
+            };
+            $scope.obj_producto = {
+                id: response.data.message.obj_producto.id,
+                desc: response.data.message.obj_producto.desc
+            };
         });
 
         $scope.update = function () {
             var json = {
                 id: $scope.id,
-                desc: $scope.desc
+                cantidad: $scope.cantidad,
+                id_factura: $scope.obj_factura.id,
+                id_producto: $scope.obj_producto.id
             }
             $http({
                 method: 'GET',
                 header: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=update',
+                url: 'http://localhost:8081/trolleyes/json?ob=linea&op=update',
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
@@ -39,15 +49,6 @@ moduleTipoproducto.controller("tipoproductoEditController", [
             $scope.loggeduser = oSessionService.getUserName();
             $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;
