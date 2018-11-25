@@ -11,13 +11,4 @@ moduleCommon.controller('homeController', ['$scope', '$location', 'toolService',
             $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
         }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
-        }
     }]);

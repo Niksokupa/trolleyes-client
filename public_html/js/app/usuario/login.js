@@ -27,6 +27,7 @@ moduleUsuario.controller("usuarioLoginController", [
                 } else {
                     $scope.logged = true;
                     $scope.failedlogin = false;
+                    oSessionService.setSessionActive();
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                     $scope.loggeduser = oSessionService.getUserName();
                 }

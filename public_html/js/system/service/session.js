@@ -23,10 +23,10 @@ moduleService.service('sessionService', ['$location', function ($location) {
             isSessionActive: function () {
                 return isSessionActive;
             },
-            setSessionActive: function (name) {
+            setSessionActive: function () {
                 isSessionActive = true;
             },
-            setSessionInactive: function (name) {
+            setSessionInactive: function () {
                 isSessionActive = false;
                 userName = "";
                 idUserLogged = "";
