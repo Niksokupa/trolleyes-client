@@ -53,6 +53,11 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producto/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController'});
         $routeProvider.when('/producto/remove/:id?', {templateUrl: 'js/app/producto/remove.html', controller: 'productoRemoveController'});
         $routeProvider.when('/producto/new', {templateUrl: 'js/app/producto/new.html', controller: 'productoNewController'});
+        
+        //COMPRARPRODUCTOS
+        $routeProvider.when('/comprar_productos/plist/:rpp?/:page?/:order?', { templateUrl: 'js/app/comprar_productos/plist.html', controller: 'comprarproductoPlistController'});
+
+
 
         //DEFAULT
         $routeProvider.otherwise({redirectTo: '/home'});
