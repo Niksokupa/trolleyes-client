@@ -106,6 +106,7 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
                 }
             }
         }
+        
         $scope.create = function () {
             $location.url('factura/' + $scope.facturaid + '/' + $scope.ob + '/new');
         }
@@ -118,7 +119,4 @@ moduleLinea.controller('lineaPlistController', ['$scope', '$http', '$location', 
 
         $scope.isActive = toolService.isActive;
     }
-
-
-
 ]);

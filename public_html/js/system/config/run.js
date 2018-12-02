@@ -14,14 +14,14 @@ trolleyes.run(['$rootScope', 'sessionService', '$location', '$http',
                     oSessionService.setId(response.data.message.id);
                 } else {
                     oSessionService.setSessionInactive;
-                    if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/usuario/login') {
-                        $location.path("/");
+                    if (nextUrl != '/home' && nextUrl != '/home' && nextUrl != '/usuario/login') {
+                        $location.path("/home");
                     }
                 }
             }, function (response) {
                 oSessionService.setSessionInactive;
-                if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/usuario/login') {
-                    $location.path("/");
+                if (nextUrl != '/home' && nextUrl != '/home' && nextUrl != '/usuario/login') {
+                    $location.path("/home");
                 }
             });
         })
