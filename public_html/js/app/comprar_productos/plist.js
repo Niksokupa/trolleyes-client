@@ -4,6 +4,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
     function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog) {
 
         $scope.totalPages = 1;
+        $scope.ob = "comprar_productos";
 
         $scope.advanced = false;
 
@@ -63,7 +64,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                 $scope.showAlert('Error añadiendo al carrito', 'Añade almenos 1 producto');
             } else if (producto.cantidad > producto.producto.existencias) {
                 $scope.showAlert('Error añadiendo al carrito', 'No hay mas existencias');
-            }else if(!Number.isInteger(producto.cantidad)){
+            } else if (!Number.isInteger(producto.cantidad)) {
                 $scope.showAlert('Error añadiendo al carrito', 'Introduce caracteres numericos');
             } else {
                 $http({
@@ -94,18 +95,53 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
             }
         }
 
+        function pagination2() {
+            $scope.list2 = [];
+            $scope.neighborhood = 3;
+            for (var i = 1; i <= $scope.totalPages; i++) {
+                if (i === $scope.page) {
+                    $scope.list2.push(i);
+                } else if (i <= $scope.page && i >= ($scope.page - $scope.neighborhood)) {
+                    $scope.list2.push(i);
+                } else if (i >= $scope.page && i <= ($scope.page - -$scope.neighborhood)) {
+                    $scope.list2.push(i);
+                } else if (i === ($scope.page - $scope.neighborhood) - 1) {
+                    $scope.list2.push("...");
+                } else if (i === ($scope.page - -$scope.neighborhood) + 1) {
+                    $scope.list2.push("...");
+                }
+            }
+        }
+
+        //getcount
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/trolleyes/json?ob=producto&op=getcount'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataUsuariosNumber = response.data.message;
+            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
+            if ($scope.page > $scope.totalPages) {
+                $scope.page = $scope.totalPages;
+                $scope.update();
+            }
+            pagination2();
+        }, function (response) {
+            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
 
         //Este mensaje se puede mejorar, buscar info en la api oficial de angular material
         //https://material.angularjs.org/latest/api/service/$mdDialog
         //https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.css
         $scope.showAlert = function (titulo, description) {
             $mdDialog.show(
-                $mdDialog.alert()
+                    $mdDialog.alert()
                     .clickOutsideToClose(false)
                     .title(titulo)
                     .textContent(description)
                     .ariaLabel('Alert Dialog Demo')
                     .ok('OK!')
-            );
+                    );
         };
     }]);
