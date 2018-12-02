@@ -34,3 +34,25 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.product {
+    font-family: 'Rokkitt', serif;
+}
+
+.product-price {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/* Custom Hover.css
+-------------------------------------------------- */
+
+/* Border Fade */
+.hvr-border-fade {
+  -webkit-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 0 #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+}

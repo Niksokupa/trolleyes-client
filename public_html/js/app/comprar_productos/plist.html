@@ -6,67 +6,61 @@
                 <h1 class="h2">
                     <i class="fas fa-box-open"></i>
                     Tienda</h1>
-<!--                <div class="btn-toolbar mb-4 mb-md-0">
-                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
-                        ng-click="advancedSearch()">
-                        <i class="fas fa-search-plus"></i>
-                        Busqueda avanzada
-                    </button>
-                </div>-->
+                <!--                <div class="btn-toolbar mb-4 mb-md-0">
+                                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
+                                        ng-click="advancedSearch()">
+                                        <i class="fas fa-search-plus"></i>
+                                        Busqueda avanzada
+                                    </button>
+                                </div>-->
             </div>
         </div>
     </div>
     <!--<advanced-search ng-show="advanced"></advanced-search>-->
     <div class="row">
-
-            <!--<pagination-component tabla="'producto'" neighborhood="1" route="'comprar_productos'"></pagination-component>-->
-            <div class="col-md-12 ml-sm-auto col-lg-12">
-                <div class="row d-flex justify-content-between flex-wrap align-items-center">
-                    <nav aria-label="paginacion">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
-                            </li>
-                            <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
-                            </li>
-                        </ul>
-                    </nav>
+        <!--<pagination-component tabla="'producto'" neighborhood="1" route="'comprar_productos'"></pagination-component>-->
+        <div class="col-md-12 ml-sm-auto col-lg-12">
+            <div class="row d-flex justify-content-between flex-wrap align-items-center">
+                <nav aria-label="paginacion">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                        </li>
+                        <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                            <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="card" style="width: 15rem; height: 23rem;" ng-repeat="producto in productos">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-10 mx-auto">
-                            <i class="fas fa-box-open card-img-top fa-7x"></i>
-                        </div>
-                    </div>
+        <div class="hvr-border-fade hvr-float-shadow product" style="width: 15rem; height: 33rem; margin: 5px; border-width: 0px; border-radius: 25px;" ng-repeat="producto in productos">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
-                        <p class="font-weight-bold">
-                            Nombre:
-                        </p>
+                    <div class="col-12 mx-auto" style=" text-align: center;">
+                        <i style="font-size: 128px;" class="icon ion-logo-tux"></i>
                     </div>
-                    <div class="col-6">
-                        <p class="card-text text-right">
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-4">
+                        <p class="card-text text-center font-weight-bold" style="text-transform: capitalize; font-size: 25px;">
                             {{producto.producto.desc}}
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-8 ">
-                        <p class="font-weight-bold">
+                        <p style="font-size: 20px;">
                             Existencias:
                         </p>
                     </div>
@@ -75,19 +69,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <p class="font-weight-bold">
-                            Precio:
-                        </p>
-                    </div>
-                    <div class="col-6 text-right">
-                        {{producto.producto.precio}}€
+                    <div class="col-12 pb-4 text-center product-price">
+                        {{producto.producto.precio}} €
                     </div>
                 </div>
                 <div class="row" ng-show="producto.producto.existencias <= 0">
                     <div class="col-12">
                         <div class="alert alert-danger" role="alert">
-                            No hay existencias de ese producto!
+                            ¡Nos hemos quedado sin existencias!
                         </div>
                     </div>
                 </div>
@@ -96,7 +85,7 @@
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" style="width:50px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
                             <div class="invalid-feedback">
-                                Please provide a valid city.
+                                Cantidad inválida.
                             </div>
                             <div class="input-group-prepend"  id="button-addon3" >
                                 <button class="btn btn-outline-success" type="button" ng-click="add(producto)"><i class="fas fa-plus-square"></i></button>
@@ -106,8 +95,8 @@
                     </div>
                 </div>
                 <div class="row" ng-show="producto.producto.existencias > 0">
-                    <div class="col-10 mx-auto">
-                        <button type="button" class="btn btn-outline-success" ng-click="save(producto)"><i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
+                    <div class="col-10 mx-auto hvr-icon-wobble-horizontal">
+                        <button type="button" class="btn btn-outline-success" ng-click="save(producto)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
                     </div>
                 </div>
             </div>

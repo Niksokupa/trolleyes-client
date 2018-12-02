@@ -11,14 +11,12 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
             } else {
                 $scope.carritoVacio = true;
             }
-            console.log(response)
         }, function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
         });
 
         $scope.carrito = function (operacion, id) {
-            console.log(operacion, id)
             $http({
                 method: 'GET',
                 url: `http://localhost:8081/trolleyes/json?ob=carrito&op=${operacion}&id=${id}&cant=1`
@@ -28,7 +26,6 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 } else {
                     $scope.carritoVacio = true;
                 }
-                console.log(response)
             }, function (response) {
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
