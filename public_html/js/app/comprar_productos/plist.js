@@ -17,7 +17,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = 5;
+            $scope.rpp = 10;
         } else {
             $scope.rpp = $routeParams.rpp;
         }
@@ -93,6 +93,10 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
             } else {
                 producto.cantidad--;
             }
+        }
+
+        $scope.update = function () {
+            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
         function pagination2() {
