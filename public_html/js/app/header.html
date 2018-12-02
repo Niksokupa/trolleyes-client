@@ -31,6 +31,9 @@
                     isActive('/tipoproducto/')}">
                 <a class="nav-link hvr-underline-from-center hvr-icon-wobble-vertical" href="tipoproducto/plist"><i class="fas fa-boxes hvr-icon"></i> Tipoproducto</a>
             </li>
+            <li class="nav-item" ng-class="{'active': isActive('/producto')}">
+                <a class="nav-link" href="comprar_productos/plist"><i class="fas fa-dolly"></i>Producto</a>
+            </li>
 
         </ul>
         <ul class="navbar-nav justify-content-end" id="navbarCollapse" style="border: 1px solid black; border-radius: 7px;">
@@ -52,12 +55,12 @@
                 <a class="nav-link" href="usuario/login"><i class="fas fa-sign-in-alt"></i> Login</a>
             </li>
         </ul>
-<!--        <div ng-show="!logged">
-            <a href="usuario/login" class="badge badge-info">Login</a>
-        </div>
-        <div ng-show="logged">
-            <span class="mr-3 text-info" style="text-transform: capitalize;">Bienvenido <a href="/trolleyes-client/public_html/usuario/view/{{loggeduserid}}">{{loggeduser}}</a></span>
-            <a href="usuario/logout" class="badge badge-danger">Logout</a>
-        </div>-->
+        <!--        <div ng-show="!logged">
+                    <a href="usuario/login" class="badge badge-info">Login</a>
+                </div>
+                <div ng-show="logged">
+                    <span class="mr-3 text-info" style="text-transform: capitalize;">Bienvenido <a href="/trolleyes-client/public_html/usuario/view/{{loggeduserid}}">{{loggeduser}}</a></span>
+                    <a href="usuario/logout" class="badge badge-danger">Logout</a>
+                </div>-->
     </div>
 </nav>
