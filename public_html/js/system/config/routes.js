@@ -56,7 +56,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         
         //COMPRARPRODUCTOS
         $routeProvider.when('/comprar_productos/plist/:rpp?/:page?/:order?', { templateUrl: 'js/app/comprar_productos/plist.html', controller: 'comprarproductoPlistController'});
-
+        $routeProvider.when('/comprar_productos/comprar', { templateUrl: 'js/app/comprar_productos/comprar.html', controller: 'comprarPlistController' });
 
 
         //DEFAULT
