@@ -82,7 +82,7 @@
                         </div>
                         <div class="row" ng-show="producto.producto.existencias <= 0">
                             <div class="col-12">
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-danger" style="border-radius: 25px" role="alert">
                                     ¡Nos hemos quedado sin existencias!
                                 </div>
                             </div>
@@ -90,20 +90,20 @@
                         <div class="row" ng-show="producto.producto.existencias > 0">
                             <div class="col-12">
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control" style="width:50px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
+                                    <input type="number" class="form-control" style="width:50px; border-radius: 25px 0 0 25px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
                                     <div class="invalid-feedback">
                                         Cantidad inválida.
                                     </div>
-                                    <div class="input-group-prepend"  id="button-addon3" >
+                                    <div class="input-group-prepend"  id="button-addon3">
                                         <button class="btn btn-outline-success" type="button" ng-click="add(producto)"><i class="fas fa-plus-square"></i></button>
-                                        <button class="btn btn-outline-danger" type="button" ng-click="reduce(producto)"><i class="fas fa-minus-circle"></i></button>
+                                        <button class="btn btn-outline-danger" style="border-radius: 0 25px 25px 0" type="button" ng-click="reduce(producto)"><i class="fas fa-minus-circle"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row" ng-show="producto.producto.existencias > 0">
-                            <div class="col-10 mx-auto hvr-icon-wobble-horizontal">
-                                <button type="button" class="btn btn-outline-success" ng-click="save(producto)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
+                            <div class="col-12 d-flex justify-content-center align-items-center hvr-icon-wobble-horizontal">
+                                <button type="button" style="border-radius: 25px" class="btn btn-outline-success" ng-click="save(producto)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
                             </div>
                         </div>
                     </div>

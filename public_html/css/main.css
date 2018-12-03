@@ -15,7 +15,7 @@ body {
   height: 47px;
   line-height: 47px; /* Vertically center the text there */
   background-color: #b0b0b0;
-    grid-row-start: 2;
+  grid-row-start: 2;
   grid-row-end: 3;
 }
 
@@ -48,5 +48,5 @@ code {
   transition-duration: 0.8s;
   -webkit-transition-property: box-shadow;
   transition-property: box-shadow;
-  box-shadow: inset 0 0 0 0 #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+  box-shadow: inset 0 0 0 1px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
 }

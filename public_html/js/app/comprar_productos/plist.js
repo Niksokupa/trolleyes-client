@@ -61,11 +61,11 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
 
         $scope.save = function (producto) {
             if (producto.cantidad <= 0) {
-                $scope.showAlert('Error añadiendo al carrito', 'Añade almenos 1 producto');
+                $scope.showAlert('Error añadiendo al carrito', 'Añade al menos 1 producto');
             } else if (producto.cantidad > producto.producto.existencias) {
-                $scope.showAlert('Error añadiendo al carrito', 'No hay mas existencias');
+                $scope.showAlert('Error añadiendo al carrito', `Lo sentimos. Solo disponemos de ${producto.producto.existencias} unidades de ${producto.producto.desc}`);
             } else if (!Number.isInteger(producto.cantidad)) {
-                $scope.showAlert('Error añadiendo al carrito', 'Introduce caracteres numericos');
+                $scope.showAlert('Error añadiendo al carrito', 'Introduce SOLO cáracteres numéricos');
             } else {
                 $http({
                     method: 'GET',
@@ -81,7 +81,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
 
         $scope.add = function (producto) {
             if (producto.cantidad >= producto.producto.existencias) {
-                $scope.showAlert('Error añadiendo productos', 'No hay mas existencias');
+                $scope.showAlert('Error añadiendo productos', `Lo sentimos. Solo disponemos de ${producto.producto.existencias} unidades de ${producto.producto.desc}`);
             } else {
                 producto.cantidad++;
             }
