@@ -15,7 +15,7 @@ moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$locatio
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = 10;
+            $scope.rpp = "10";
         } else {
             $scope.rpp = $routeParams.rpp;
         }

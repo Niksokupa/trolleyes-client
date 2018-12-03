@@ -15,7 +15,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = 10;
+            $scope.rpp = "10";
         } else {
             $scope.rpp = $routeParams.rpp;
         }

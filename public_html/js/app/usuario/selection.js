@@ -15,7 +15,7 @@ function cController($http) {
     self.page = 1;
     self.totalPages = 1;
     self.orderURLServidor = "";
-    self.rpp = 10;
+    self.rpp = "10";
 
 
 
