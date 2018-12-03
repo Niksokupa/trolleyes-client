@@ -32,7 +32,7 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 method: 'GET',
                 url: `http://localhost:8081/trolleyes/json?ob=carrito&op=${operacion}&id=${id}&cant=1`
             }).then(function (response) {
-                if (response.data.message != null) {
+                if (response.data.status != 400) {
                     $scope.productos = response.data.message;
                     var auxCant = 0;
                     var auxPrecio = 0;
