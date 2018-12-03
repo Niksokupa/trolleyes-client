@@ -17,7 +17,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = 10;
+            $scope.rpp = "10";
         } else {
             $scope.rpp = $routeParams.rpp;
         }
@@ -72,7 +72,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     url: `http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=${producto.producto.id}&cant=${producto.cantidad}`
                 }).then(function (response) {
                     countcarritoService.updateCarrito();
-                    console.log(response);
+                    $scope.showAlert('Has añadido:', `${producto.cantidad} unidades de ${producto.producto.desc} a tu carrito.`);
                 }, function (response) {
                     $scope.showAlert('Error', response.data.message);
                 });
