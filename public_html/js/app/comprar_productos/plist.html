@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="hvr-border-fade hvr-float-shadow product" style="width: 15rem; height: 33rem; margin: 5px; border-width: 0px; border-radius: 12px;" ng-repeat="producto in productos">
+                <div class="hvr-border-fade hvr-float-shadow product" style="width: 15rem; height: 31rem; margin: 5px; border-width: 0px; border-radius: 12px;" ng-repeat="producto in productos">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 mx-auto" style=" text-align: center;">
@@ -90,7 +90,7 @@
                         <div class="row" ng-show="producto.producto.existencias > 0">
                             <div class="col-12">
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control" style="width:50px; border-radius: 25px 0 0 25px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
+                                    <input type="number" max="{{producto.producto.existencias}}" min="0" class="form-control" style="width:50px; border-radius: 25px 0 0 25px" placeholder="0" ng-model="producto.cantidad" value="producto.cantidad">
                                     <div class="invalid-feedback">
                                         Cantidad inválida.
                                     </div>
