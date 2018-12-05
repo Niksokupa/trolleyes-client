@@ -6,7 +6,7 @@ moduleService.service('sessionService', ['$location', function ($location) {
         var isSessionActive = false;
         var userName = "";
         var idUserLogged = "";
-        var admin = false;
+        var admin;
         var carrito = 0;
         var observerCallbacks = [];
         return {

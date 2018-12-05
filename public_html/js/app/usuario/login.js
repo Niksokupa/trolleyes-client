@@ -30,6 +30,11 @@ moduleUsuario.controller("usuarioLoginController", [
                     oSessionService.setSessionActive();
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                     $scope.loggeduser = oSessionService.getUserName();
+                    if (response.data.message.obj_tipoUsuario.desc == "Administrador") {
+                        oSessionService.setAdmin();
+                    } else {
+                        oSessionService.setUser();
+                    }
                 }
 
             }, function (response) {
