@@ -48,8 +48,10 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
 
                             totalModificado += auxCant * auxPrecio;
                         }
+                        countcarritoService.updateCarrito();
                     } else {
                         $scope.carritoVacio = true;
+                        countcarritoService.updateCarrito();
                     }
                     $scope.total = Math.round(totalModificado * 100) / 100;
                 } else {
@@ -69,8 +71,10 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 if (response.data.status == 200) {
                     $scope.showAlert('Correcto', 'Se ha realizado la compra correctamente');
                     $scope.carritoVacio = true;
+                    countcarritoService.updateCarrito();
                 } else {
                     $scope.showAlert('Error', response.data.message);
+                    countcarritoService.updateCarrito();
                 }
             }, function (response) {
                 $scope.showAlert('Error', response.data.message);
