@@ -19,7 +19,7 @@ trolleyes.run([
           oSessionService.setSessionActive();
           oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
           oSessionService.setId(response.data.message.id);
-          if (response.data.message.obj_tipoUsuario.desc == "admin") {
+          if (response.data.message.obj_tipoUsuario.desc == "Administrador") {
             oSessionService.setAdmin();
           } else {
             oSessionService.setUser();

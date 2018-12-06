@@ -12,11 +12,15 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 var auxCant = 0;
                 var auxPrecio = 0;
                 var totalInicial = 0;
-                for (var i = 0; i < response.data.message.length; i++) {
-                    auxCant = response.data.message[i].cantidad;
-                    auxPrecio = response.data.message[i].obj_producto.precio;
+                if (response.data.message.length != null) {
+                    for (var i = 0; i < response.data.message.length; i++) {
+                        auxCant = response.data.message[i].cantidad;
+                        auxPrecio = response.data.message[i].obj_producto.precio;
 
-                    totalInicial += auxCant * auxPrecio;
+                        totalInicial += auxCant * auxPrecio;
+                    }
+                } else {
+                    $scope.carritoVacio = true;
                 }
                 $scope.total = Math.round(totalInicial * 100) / 100;
             } else {
@@ -37,11 +41,17 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                     var auxCant = 0;
                     var auxPrecio = 0;
                     var totalModificado = 0;
-                    for (var i = 0; i < response.data.message.length; i++) {
-                        auxCant = response.data.message[i].cantidad;
-                        auxPrecio = response.data.message[i].obj_producto.precio;
+                    if (response.data.message != null) {
+                        for (var i = 0; i < response.data.message.length; i++) {
+                            auxCant = response.data.message[i].cantidad;
+                            auxPrecio = response.data.message[i].obj_producto.precio;
 
-                        totalModificado += auxCant * auxPrecio;
+                            totalModificado += auxCant * auxPrecio;
+                        }
+                        countcarritoService.updateCarrito();
+                    } else {
+                        $scope.carritoVacio = true;
+                        countcarritoService.updateCarrito();
                     }
                     $scope.total = Math.round(totalModificado * 100) / 100;
                 } else {
@@ -58,8 +68,14 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 method: 'GET',
                 url: `http://localhost:8081/trolleyes/json?ob=carrito&op=buy`
             }).then(function (response) {
-                $scope.showAlert('Correcto', 'Se ha realizado la compra correctamente');
-                $scope.carritoVacio = true;
+                if (response.data.status == 200) {
+                    $scope.showAlert('Correcto', 'Se ha realizado la compra correctamente');
+                    $scope.carritoVacio = true;
+                    countcarritoService.updateCarrito();
+                } else {
+                    $scope.showAlert('Error', response.data.message);
+                    countcarritoService.updateCarrito();
+                }
             }, function (response) {
                 $scope.showAlert('Error', response.data.message);
             });
