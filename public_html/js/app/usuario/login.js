@@ -37,8 +37,6 @@ moduleUsuario.controller("usuarioLoginController", [
                     }
                 }
 
-            }, function (response) {
-
             });
         }
         $scope.isActive = toolService.isActive;

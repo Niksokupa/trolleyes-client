@@ -37,19 +37,6 @@ trolleyes.run([
         }
       });
       countcarritoService.updateCarrito();
-      // $http({
-      //   method: "GET",
-      //   url: "http://localhost:8081/trolleyes/json?ob=carrito&op=show"
-      // }).then(function (response) {
-      //   console.log(response);
-      //   var aux = 0;
-      //   for(i = 0; i < response.data.message.length; i++){
-      //     aux += response.data.message[i].cantidad;
-      //   }
-      //   oSessionService.setCountCarrito(aux);
-      // }, function (response) {
-      // });
-
     });
   }
 ]);

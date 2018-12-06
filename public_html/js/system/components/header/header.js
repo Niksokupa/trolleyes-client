@@ -21,6 +21,13 @@ function js(toolService, sessionService) {
     self.carrito = sessionService.getCountCarrito();
 
     sessionService.registerObserverCallback(function () {
+        self.name = sessionService.getUserName();
+    })
+    sessionService.registerObserverCallback(function () {
+        self.isAdmin = sessionService.isAdmin();
+    })
+
+    sessionService.registerObserverCallback(function () {
         self.carrito = sessionService.getCountCarrito();
     })
     sessionService.registerObserverCallback(function () {

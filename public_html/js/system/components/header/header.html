@@ -25,7 +25,7 @@
             <li ng-show="c.isAdmin" class="nav-item" ng-class="{'active': c.isActive('/tipoproducto')}">
                 <a class="nav-link" href="tipoproducto/plist"><i class="fas fa-boxes"></i>Tipoproducto</a>
             </li>
-            <li ng-show="!c.isAdmin" class="nav-item" ng-class="{'active': c.isActive('/comprar_productos')}">
+            <li ng-show="!c.isAdmin && c.isAdmin != null" class="nav-item" ng-class="{'active': c.isActive('/comprar_productos')}">
                 <a class="nav-link" href="comprar_productos/plist"><i class="fas fa-dolly"></i>Producto</a>
             </li>
         </ul>
