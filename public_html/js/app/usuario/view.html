@@ -37,9 +37,9 @@
                     <th class="text-center">Tipo de Usuario</th>
                     <td class="text-center">{{ajaxData.obj_tipoUsuario.desc}}</td>
                 </tr>
-                <tr ng-show="c.isAdmin" class="text-center">
+                <tr ng-show="{{!admin}}" class="text-center">
                     <th class="text-center">Facturas</th>
-                    <td class="text-center"><a href="/trolleyes-client/public_html/usuario/view/{{fila.id}}" class="btn btn-light fas fa-eye" role="button"></a></td>
+                    <td class="text-center"><a href="http://localhost:8080/trolleyes-client/public_html/usuario/{{id}}/factura/plistspecific" class="btn btn-light fas fa-eye" role="button"></a></td>
                 </tr>
             </table>
         </div>

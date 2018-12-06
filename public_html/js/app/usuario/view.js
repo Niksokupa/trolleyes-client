@@ -6,6 +6,7 @@ moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolServi
         $scope.logged = false;
         $scope.mostrar = false;
         $scope.activar = true;
+        $scope.admin = oSessionService.isAdmin();
         $scope.ajaxData = "";
         $scope.toggle = function () {
             $scope.mostrar = !$scope.mostrar;

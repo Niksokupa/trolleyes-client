@@ -6,7 +6,9 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         $scope.ob = "factura";
         $scope.totalPages = 1;
         $scope.userid = $routeParams.id;
-
+        if(!oSessionService.isAdmin()){
+            $location.url('/home');
+        }
 
 
         if (!$routeParams.order) {

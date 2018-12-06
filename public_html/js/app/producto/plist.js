@@ -5,6 +5,9 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         $scope.logged = false;
         $scope.ob = "producto";
         $scope.totalPages = 1;
+        if(!oSessionService.isAdmin()){
+            $location.url('/home');
+        }
 
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";

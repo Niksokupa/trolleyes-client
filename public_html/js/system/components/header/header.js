@@ -23,5 +23,8 @@ function js(toolService, sessionService) {
     sessionService.registerObserverCallback(function () {
         self.carrito = sessionService.getCountCarrito();
     })
+    sessionService.registerObserverCallback(function () {
+        self.logged = sessionService.isSessionActive();
+    })
 
 }
