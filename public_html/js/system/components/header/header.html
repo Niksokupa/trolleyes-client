@@ -38,8 +38,8 @@
                     </a>
                 </li>
             </div>
-            <li class="nav-item"  style="border: 1px solid black; border-radius: 7px;">
-                <div class="dropdown" ng-show="c.logged">
+            <li class="nav-item"  ng-show="c.logged" style="border: 1px solid black; border-radius: 7px;">
+                <div class="dropdown" >
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" style="text-transform: capitalize;">
                         {{c.name}}
@@ -62,7 +62,9 @@
                 </div>
             </li>
             <li class="nav-item" ng-class="{'active': c.isActive('/usuario/login')}" ng-show="!c.logged">
-                <a class="nav-link" href="usuario/login">Login</a>
+                <div style="border: 1px solid black; border-radius: 7px;">                
+                    <a class="nav-link" href="usuario/login">Login</a>
+                </div>
             </li>
         </ul>
     </div>
