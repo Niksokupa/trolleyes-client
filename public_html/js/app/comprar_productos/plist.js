@@ -169,11 +169,11 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                         })
                         .appendTo($('body'))
                         .animate({
-                            'top': cart.offset().top - 200,
-                            'left': cart.offset().left - 65,
-                            'width': 128,
-                            'height': 128
-                        }, 1750, 'easeInOutExpo');
+                            'top': cart.offset().top - 80,
+                            'left': cart.offset().left - 80,
+                            'width': 175,
+                            'height': 175
+                        }, 1250, 'easeOutSine');
 
                 setTimeout(function () {
                     cart.effect("shake", {
