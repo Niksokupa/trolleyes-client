@@ -1,7 +1,7 @@
 'use strict'
 
-moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "sessionService", "countcarritoService", "$mdDialog",
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog) {
+moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "sessionService", "countcarritoService", "$mdDialog", '$timeout',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog, $timeout) {
 
         $scope.totalPages = 1;
         $scope.ob = "comprar_productos";
@@ -71,7 +71,9 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     method: 'GET',
                     url: `http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=${producto.producto.id}&cant=${producto.cantidad}`
                 }).then(function (response) {
-                    countcarritoService.updateCarrito();
+                    $timeout(function () {
+                        countcarritoService.updateCarrito();
+                    }, 1650);
                     cartAnimation(producto.producto.id);
                 }, function (response) {
                     $scope.showAlert('Error', response.data.message);
@@ -169,8 +171,8 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                         })
                         .appendTo($('body'))
                         .animate({
-                            'top': cart.offset().top - 80,
-                            'left': cart.offset().left - 80,
+                            'top': cart.offset().top - 50,
+                            'left': cart.offset().left - 30,
                             'width': 175,
                             'height': 175
                         }, 1250, 'easeOutSine');

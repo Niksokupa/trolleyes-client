@@ -6,7 +6,7 @@ moduleProducto.controller("productoNewController", [
     "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    function ($scope, $http, $routeParams, toolService, oSessionService, elem) {
         $scope.created = true;
         $scope.logged = false;
         $scope.obj_tipoProducto = {
@@ -62,7 +62,43 @@ moduleProducto.controller("productoNewController", [
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
             }
         }
+        
+        $scope.fileNameChanged = function () {
+            //Solucion mas cercana
+            //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
+            var file = $scope.myFile;
+            //Api FormData 
+            //https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData
+            var oFormData = new FormData();
+            oFormData.append('file', file);
+            $http({
+                headers: { 'Content-Type': undefined },
+                method: 'POST',
+                data: oFormData,
+                url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
+            }).then(function (response) {
+                console.log(response);
+            }, function (response) {
+                console.log(response)
+            });
+        }
+    
+    
 
         $scope.isActive = toolService.isActive;
     }
-]);
+]).directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    }
+}]);

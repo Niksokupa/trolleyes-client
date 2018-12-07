@@ -4,7 +4,7 @@ moduleComponent.component('headerComponent', {
     bindings: {
         // data: '=',
         // tabla: '<'
-        eventlistener: '&'
+        eventlistener: '>'
     },
     controllerAs: 'c',
     controller: js
@@ -12,6 +12,7 @@ moduleComponent.component('headerComponent', {
 
 function js(toolService, sessionService) {
     var self = this;
+    var cart = $('.trolley');
 
     self.logged = sessionService.isSessionActive();
     self.name = sessionService.getUserName();
@@ -29,6 +30,11 @@ function js(toolService, sessionService) {
 
     sessionService.registerObserverCallback(function () {
         self.carrito = sessionService.getCountCarrito();
+
+        cart.effect("shake", {
+            times: 2
+        }, 400);
+
     })
     sessionService.registerObserverCallback(function () {
         self.logged = sessionService.isSessionActive();
