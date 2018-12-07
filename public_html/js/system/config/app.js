@@ -2,6 +2,7 @@
 
 var trolleyes = angular.module('MyApp', [
     'ngRoute',
+    'ngAnimate',
     'services',
     'commonControllers',
     'tipousuarioControllers',

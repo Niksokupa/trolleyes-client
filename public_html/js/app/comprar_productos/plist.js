@@ -72,7 +72,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     url: `http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=${producto.producto.id}&cant=${producto.cantidad}`
                 }).then(function (response) {
                     countcarritoService.updateCarrito();
-                    $scope.showAlert('Has añadido:', `${producto.cantidad} unidades de ${producto.producto.desc} a tu carrito.`);
+                    cartAnimation(producto.producto.id);
                 }, function (response) {
                     $scope.showAlert('Error', response.data.message);
                 });
@@ -148,4 +148,45 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     .ok('OK!')
                     );
         };
+
+        function cartAnimation(id) {
+
+            var esto = $('.add-to-cart')[id - 1];
+            var cart = $('.shopping-cart');
+            var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body');
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                        .offset({
+                            top: imgtodrag.offset().top,
+                            left: imgtodrag.offset().left
+                        })
+                        .css({
+                            'opacity': '0.5',
+                            'position': 'absolute',
+                            'height': '256px',
+                            'width': '256px',
+                            'z-index': '100'
+                        })
+                        .appendTo($('body'))
+                        .animate({
+                            'top': cart.offset().top - 200,
+                            'left': cart.offset().left - 65,
+                            'width': 128,
+                            'height': 128
+                        }, 1750, 'easeInOutExpo');
+
+                setTimeout(function () {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+            }
+        }
     }]);
