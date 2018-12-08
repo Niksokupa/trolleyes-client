@@ -15,12 +15,14 @@ moduleProducto.controller("productoNewController", [
         }
 
         $scope.create = function () {
+            $scope.fileNameChanged();
             var json = {
                 id: $scope.id,
                 codigo: $scope.codigo,
                 desc: $scope.desc,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
+                foto: $scope.myFile.name,
                 id_tipoProducto: $scope.obj_tipoProducto.id
             }
 
