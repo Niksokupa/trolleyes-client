@@ -59,7 +59,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
             }
         }
 
-        $scope.save = function (producto) {
+        $scope.save = function (producto, clase) {
             if (producto.cantidad <= 0) {
                 $scope.showAlert('Error añadiendo al carrito', 'Añade al menos 1 producto');
             } else if (producto.cantidad > producto.producto.existencias) {
@@ -153,8 +153,9 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
         };
 
         function cartAnimation(id) {
-
-            var esto = $('.add-to-cart')[id - 1];
+            
+            var idReal = id - 1;
+            var esto = $('.add-to-cart' + idReal);
             var cart = $('.shopping-cart');
             var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body').find("i").eq(0);
             if (imgtodrag) {

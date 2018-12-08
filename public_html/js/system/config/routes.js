@@ -20,6 +20,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/app/usuario/edit.html', controller: 'usuarioEditController'});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/app/usuario/remove.html', controller: 'usuarioRemoveController'});
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/usuario/plist.html', controller: 'usuarioPlistController'});
+        $routeProvider.when('/usuario/changepass', {templateUrl: 'js/app/usuario/changepass.html', controller: 'usuarioChangePassController'});
+        $routeProvider.when('/usuario/facturas', {templateUrl: 'js/app/usuario/facturas_usuario.html', controller: 'usuarioFacturasUsuarioController'});
 
         //FACTURA
         $routeProvider.when('/factura/plist', {templateUrl: 'js/app/factura/plist.html', controller: 'facturaPlistController'});
@@ -53,10 +55,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/producto/edit/:id?', {templateUrl: 'js/app/producto/edit.html', controller: 'productoEditController'});
         $routeProvider.when('/producto/remove/:id?', {templateUrl: 'js/app/producto/remove.html', controller: 'productoRemoveController'});
         $routeProvider.when('/producto/new', {templateUrl: 'js/app/producto/new.html', controller: 'productoNewController'});
-        
+
         //COMPRARPRODUCTOS
-        $routeProvider.when('/comprar_productos/plist/:rpp?/:page?/:order?', { templateUrl: 'js/app/comprar_productos/plist.html', controller: 'comprarproductoPlistController'});
-        $routeProvider.when('/comprar_productos/comprar', { templateUrl: 'js/app/comprar_productos/comprar.html', controller: 'comprarPlistController' });
+        $routeProvider.when('/comprar_productos/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/comprar_productos/plist.html', controller: 'comprarproductoPlistController'});
+        $routeProvider.when('/comprar_productos/comprar', {templateUrl: 'js/app/comprar_productos/comprar.html', controller: 'comprarPlistController'});
 
 
         //DEFAULT
