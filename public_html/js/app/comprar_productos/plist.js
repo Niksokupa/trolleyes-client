@@ -2,7 +2,7 @@
 
 moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "sessionService", "countcarritoService", "$mdDialog", '$timeout',
     function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog, $timeout) {
-
+        $scope.addCarrito = false;
         $scope.totalPages = 1;
         $scope.ob = "comprar_productos";
 
@@ -74,6 +74,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     $timeout(function () {
                         countcarritoService.updateCarrito();
                     }, 1650);
+                    $scope.addCarrito = true;
                     cartAnimation(producto.producto.id);
                 }, function (response) {
                     $scope.showAlert('Error', response.data.message);
