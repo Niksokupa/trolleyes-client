@@ -28,7 +28,7 @@
     </div>
     <div class="row" ng-show="!carritoVacio">
         <div class="col-12">
-            <table class="table">
+            <table class="table" style="text-align: center;">
                 <thead>
                     <tr>
                         <th scope="col">Foto</th>
@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="producto in productos">
-                        <td>{{producto.obj_producto.foto}}</td>
+                        <td><image ng-src="http://localhost:8081/images/{{producto.obj_producto.foto}}" style="width: 64px; height: 64px;" /></td>
                         <td>{{producto.obj_producto.desc}}</td>
                         <td>{{producto.obj_producto.precio}} €</td>
                         <td>{{producto.cantidad}}
@@ -60,7 +60,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><b>{{total}} €</b></td>
+                        <td><h2><b>{{total}} €</b></h2></td>
                     </tr>
                 </tbody>
             </table>
