@@ -157,7 +157,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
             var idReal = id - 1;
             var esto = $('.add-to-cart' + idReal);
             var cart = $('.shopping-cart');
-            var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body').find("i").eq(0);
+            var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body').find("img").eq(0);
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                         .offset({
@@ -167,16 +167,16 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                         .css({
                             'opacity': '0.5',
                             'position': 'absolute',
-                            'height': '150px',
-                            'width': '150px',
+                            'height': '128px',
+                            'width': '128px',
                             'z-index': '100'
                         })
                         .appendTo($('body'))
                         .animate({
-                            'top': cart.offset().top - 30,
-                            'left': cart.offset().left,
-                            'width': 175,
-                            'height': 175
+                            'top': cart.offset().top + 20,
+                            'left': cart.offset().left +20,
+                            'width': 64,
+                            'height': 64
                         }, 1250, 'easeOutSine');
 
                 setTimeout(function () {

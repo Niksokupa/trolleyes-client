@@ -11,6 +11,10 @@
             <div class="row" ng-show="created">
                 <div class="col-6 mx-auto">
                     <form name="userForm">
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" file-model="myFile">
+                        </div>
                         <div class="form-group" ng-class="{ 'has-error' : userForm.codigo.$invalid && !userForm.codigo.$pristine }">
                             <label>Código</label>
                             <input type="text" class="form-control" id="codigo" name="codigo" ng-model="codigo" ng-required="true"
@@ -34,12 +38,6 @@
                                    ng-pattern="/^[1-9][0-9]*$/"/>
                             <div ng-show="!userForm.existencias.$valid && userForm.existencias.$dirty" class="alert alert-danger" role="alert">
                                 Sólo se aceptan números enteros.
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <input type="file" file-model="myFile">
-
                             </div>
                         </div>
                         <div class="form-group">

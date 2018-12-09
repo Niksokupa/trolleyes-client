@@ -12,6 +12,19 @@
                 <div class="col-6 mx-auto">
                     <form name="userForm">
                         <div class="form-group">
+                            <div class="row">
+                                <div class="mx-auto pb-5">
+                                    <img id="output" src="http://localhost:8081/images/{{foto}}" style="width: 128px; height: 128px;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mx-auto pb-5">
+                                    <!--ARREGLO EN UNA LINEA DE PREVIEW DE NUEVA FOTO-->
+                                    <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"" ng-model="foto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>ID</label>
                             <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
                         </div>

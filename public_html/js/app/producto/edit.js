@@ -29,13 +29,20 @@ moduleProducto.controller("productoEditController", [
         };
 
         $scope.update = function () {
+            var foto;
+            if ($scope.myFile !== undefined) {
+                foto = $scope.foto;
+                uploadPhoto(foto);
+            } else {
+                foto = $scope.foto;
+            }
             var json = {
                 id: $scope.id,
                 codigo: $scope.codigo,
                 desc: $scope.desc,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                foto: $scope.foto,
+                foto: foto,
                 id_tipoProducto: $scope.obj_tipoProducto.id
             }
             $http({
@@ -73,5 +80,36 @@ moduleProducto.controller("productoEditController", [
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
             }
         }
+
+        function uploadPhoto(name) {
+            //Solucion mas cercana
+            //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
+            var file = $scope.myFile;
+            file = new File([file], name, {type: file.type});
+            //Api FormData 
+            //https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData
+            var oFormData = new FormData();
+            oFormData.append('file', file);
+            $http({
+                headers: {'Content-Type': undefined},
+                method: 'POST',
+                data: oFormData,
+                url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
+            });
+        }
     }
-]);
+]).directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        }
+    }]);

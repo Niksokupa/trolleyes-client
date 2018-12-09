@@ -16,13 +16,20 @@ moduleProducto.controller("productoNewController", [
 
         $scope.create = function () {
             $scope.fileNameChanged();
+            var foto;
+            if ($scope.myFile == undefined) {
+                foto = "Foto";
+            } else {
+                foto = $scope.myFile.name;
+            }
+
             var json = {
                 id: $scope.id,
                 codigo: $scope.codigo,
                 desc: $scope.desc,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                foto: $scope.myFile.name,
+                foto: foto,
                 id_tipoProducto: $scope.obj_tipoProducto.id
             }
 
@@ -64,7 +71,7 @@ moduleProducto.controller("productoNewController", [
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
             }
         }
-        
+
         $scope.fileNameChanged = function () {
             //Solucion mas cercana
             //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
@@ -74,7 +81,7 @@ moduleProducto.controller("productoNewController", [
             var oFormData = new FormData();
             oFormData.append('file', file);
             $http({
-                headers: { 'Content-Type': undefined },
+                headers: {'Content-Type': undefined},
                 method: 'POST',
                 data: oFormData,
                 url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
@@ -84,23 +91,23 @@ moduleProducto.controller("productoNewController", [
                 console.log(response)
             });
         }
-    
-    
+
+
 
         $scope.isActive = toolService.isActive;
     }
 ]).directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
 
-            element.bind('change', function () {
-                scope.$apply(function () {
-                    modelSetter(scope, element[0].files[0]);
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
                 });
-            });
+            }
         }
-    }
-}]);
+    }]);
