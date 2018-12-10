@@ -8,17 +8,17 @@
                     Tu carrito</h1>
                 <div class="btn-group mb-4 mb-md-0" role="group" aria-label="Basic example" ng-show="!carritoVacio">
                     <button type="button" class="btn btn-outline-success" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
-                        ng-click="buy()">
+                            ng-click="buy()">
                         <i class="fas fa-credit-card"></i>
                         Comprar
                     </button>
-<!--                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
-                        ng-click="advancedSearch()">
-                        <i class="fas fa-search-plus"></i>
-                        Busqueda avanzada
-                    </button>-->
+                    <!--                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
+                                            ng-click="advancedSearch()">
+                                            <i class="fas fa-search-plus"></i>
+                                            Busqueda avanzada
+                                        </button>-->
                     <button type="button" class="btn btn-outline-danger" style="width: 100%;height: 50px;margin-top: 15px;margin-left: 10px;margin-right: 10px;"
-                        ng-click="carrito('empty',null)">
+                            ng-click="carrito('empty', null)">
                         <i class="fas fa-trash-alt"></i>
                         Eliminar todo
                     </button>
@@ -40,16 +40,16 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="producto in productos">
-                        <td><image ng-src="http://localhost:8081/images/{{producto.obj_producto.foto}}" style="width: 64px; height: 64px;" /></td>
+                        <td><image ng-src="http://localhost:8081/imagenes/{{producto.obj_producto.foto}}" style="width: 64px; height: 64px;" /></td>
                         <td>{{producto.obj_producto.desc}}</td>
                         <td>{{producto.obj_producto.precio}} €</td>
                         <td>{{producto.cantidad}}
                             <div style="margin-left: 20px;" class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" ng-click="carrito('add',producto.obj_producto.id)" class="btn btn-outline-secondary"><i
+                                <button type="button" ng-click="carrito('add', producto.obj_producto.id)" class="btn btn-outline-secondary"><i
                                         class="fas fa-plus"></i></button>
-                                <button type="button" ng-click="carrito('reduce',producto.obj_producto.id)" class="btn btn-outline-secondary"><i
+                                <button type="button" ng-click="carrito('reduce', producto.obj_producto.id)" class="btn btn-outline-secondary"><i
                                         class="fas fa-minus"></i></button>
-                                <button type="button" ng-click="carrito('remove',producto.obj_producto.id)" class="btn btn-outline-secondary"><i
+                                <button type="button" ng-click="carrito('remove', producto.obj_producto.id)" class="btn btn-outline-secondary"><i
                                         class="fas fa-trash-alt"></i></button>
                             </div>
                         </td>
