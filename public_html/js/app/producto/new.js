@@ -15,12 +15,11 @@ moduleProducto.controller("productoNewController", [
         }
 
         $scope.create = function () {
-            $scope.fileNameChanged();
-            var foto;
+            
             if ($scope.myFile == undefined) {
-                foto = "Foto";
+                $scope.foto = "Foto";
             } else {
-                foto = $scope.myFile.name;
+                $scope.foto = guid() + $scope.myFile.name;
             }
 
             var json = {
@@ -29,9 +28,11 @@ moduleProducto.controller("productoNewController", [
                 desc: $scope.desc,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                foto: foto,
+                foto: $scope.foto,
                 id_tipoProducto: $scope.obj_tipoProducto.id
             }
+            
+            $scope.fileNameChanged();
 
             $http({
                 method: 'GET',
@@ -76,6 +77,7 @@ moduleProducto.controller("productoNewController", [
             //Solucion mas cercana
             //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
             var file = $scope.myFile;
+            file = new File([file], $scope.foto, {type: file.type});
             //Api FormData 
             //https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData
             var oFormData = new FormData();
@@ -90,6 +92,21 @@ moduleProducto.controller("productoNewController", [
             }, function (response) {
                 console.log(response)
             });
+        }
+
+
+
+
+        //Random generator
+
+        function guid() {
+            return "ss-s-s-s-sss".replace(/s/g, s4);
+        }
+
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
         }
 
 

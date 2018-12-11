@@ -31,7 +31,14 @@ moduleProducto.controller("productoEditController", [
         $scope.update = function () {
             var foto;
             if ($scope.myFile !== undefined) {
-                foto = $scope.foto;
+                //Si el nombre de la imagen es "Foto" significa que es la de por defecto, se le deja intacta
+                if ($scope.myFile.name == "Foto") {
+                    foto = $scope.myFile.name;
+                } else if($scope.foto == "Foto" && $scope.myFile.name != "Foto") {
+                    foto = guid() + $scope.myFile.name;
+                } else {
+                    foto = $scope.foto;
+                }
                 uploadPhoto(foto);
             } else {
                 foto = $scope.foto;
@@ -96,6 +103,16 @@ moduleProducto.controller("productoEditController", [
                 data: oFormData,
                 url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
             });
+        }
+
+        function guid() {
+            return "ss-s-s-s-sss".replace(/s/g, s4);
+        }
+
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
         }
     }
 ]).directive('fileModel', ['$parse', function ($parse) {
