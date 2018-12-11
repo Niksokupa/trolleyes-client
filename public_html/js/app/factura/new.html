@@ -28,8 +28,8 @@
                                 IVA obligatorio
                             </div>
                         </div>
-                        <label for="obj_usuario">Usuario:</label>
-                        <div class="form-group row" style="padding-left:15px;">
+                        <label for="obj_usuario" ng-show="userChooser">Usuario:</label>
+                        <div class="form-group row" style="padding-left:15px;" ng-show="userChooser">
                             <usuario-selection 
                                 class="modal fade" 
                                 id="cadd-location-modal" 

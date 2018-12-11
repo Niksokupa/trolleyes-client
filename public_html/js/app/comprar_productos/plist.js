@@ -59,7 +59,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
             }
         }
 
-        $scope.save = function (producto, clase) {
+        $scope.save = function (producto, index) {
             if (producto.cantidad <= 0) {
                 $scope.showAlert('Error añadiendo al carrito', 'Añade al menos 1 producto');
             } else if (producto.cantidad > producto.producto.existencias) {
@@ -74,8 +74,9 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                     $timeout(function () {
                         countcarritoService.updateCarrito();
                     }, 1650);
+                    producto.cantidad = 0;
                     $scope.addCarrito = true;
-                    cartAnimation(producto.producto.id);
+                    cartAnimation(index);
                 }, function (response) {
                     $scope.showAlert('Error', response.data.message);
                 });
@@ -154,7 +155,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
 
         function cartAnimation(id) {
             
-            var idReal = id - 1;
+            var idReal = id;
             var esto = $('.add-to-cart' + idReal);
             var cart = $('.shopping-cart');
             var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body').find("img").eq(0);

@@ -71,6 +71,10 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 if (response.data.status == 200) {
                     $scope.showAlert('Correcto', 'Se ha realizado la compra correctamente');
                     $scope.carritoVacio = true;
+                    $http({
+                        method: 'GET',
+                        url: `http://localhost:8081/trolleyes/json?ob=carrito&op=empty`
+                    })
                     countcarritoService.updateCarrito();
                 } else {
                     $scope.showAlert('Error', response.data.message);
