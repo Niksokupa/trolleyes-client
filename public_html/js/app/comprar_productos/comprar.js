@@ -1,18 +1,18 @@
-moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "sessionService", "countcarritoService", "$mdDialog",
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog) {
+moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', "countcarritoService", "$mdDialog",
+    function ($scope, $http, countcarritoService, $mdDialog) {
 
         $scope.carritoVacio = false;
         $http({
             method: 'GET',
             url: `http://localhost:8081/trolleyes/json?ob=carrito&op=show`
         }).then(function (response) {
-            if (response.data.message != null) {
+            if (response.data.message !== null) {
                 $scope.productos = response.data.message;
                 $scope.total = 0;
                 var auxCant = 0;
                 var auxPrecio = 0;
                 var totalInicial = 0;
-                if (response.data.message.length != null) {
+                if (response.data.message.length !== null) {
                     for (var i = 0; i < response.data.message.length; i++) {
                         auxCant = response.data.message[i].cantidad;
                         auxPrecio = response.data.message[i].obj_producto.precio;
@@ -23,6 +23,7 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                     $scope.carritoVacio = true;
                 }
                 $scope.total = Math.round(totalInicial * 100) / 100;
+                $scope.total = $scope.total.toFixed(2);
             } else {
                 $scope.carritoVacio = true;
             }
@@ -36,12 +37,12 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 method: 'GET',
                 url: `http://localhost:8081/trolleyes/json?ob=carrito&op=${operacion}&id=${id}&cant=1`
             }).then(function (response) {
-                if (response.data.status != 400) {
+                if (response.data.status !== 400) {
                     $scope.productos = response.data.message;
                     var auxCant = 0;
                     var auxPrecio = 0;
                     var totalModificado = 0;
-                    if (response.data.message != null) {
+                    if (response.data.message !== null) {
                         for (var i = 0; i < response.data.message.length; i++) {
                             auxCant = response.data.message[i].cantidad;
                             auxPrecio = response.data.message[i].obj_producto.precio;
@@ -54,6 +55,7 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                         countcarritoService.updateCarrito();
                     }
                     $scope.total = Math.round(totalModificado * 100) / 100;
+                    $scope.total = $scope.total.toFixed(2);
                 } else {
                     $scope.carritoVacio = true;
                 }
@@ -61,14 +63,14 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
-        }
+        };
 
         $scope.buy = function () {
             $http({
                 method: 'GET',
                 url: `http://localhost:8081/trolleyes/json?ob=carrito&op=buy`
             }).then(function (response) {
-                if (response.data.status == 200) {
+                if (response.data.status === 200) {
                     $scope.showAlert('Correcto', 'Se ha realizado la compra correctamente');
                     $scope.carritoVacio = true;
                     countcarritoService.updateCarrito();
@@ -79,7 +81,11 @@ moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', '
             }, function (response) {
                 $scope.showAlert('Error', response.data.message);
             });
-        }
+        };
+
+        $scope.priceFormat = function (valor) {
+            return isNaN(valor) ? valor : parseFloat(valor).toFixed(2);
+        };
 
         //Este mensaje se puede mejorar, buscar info en la api oficial de angular material
         //https://material.angularjs.org/latest/api/service/$mdDialog
