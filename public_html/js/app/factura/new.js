@@ -13,6 +13,12 @@ moduleFactura.controller("facturaNewController", [
         $scope.obj_usuario = {
             id: $routeParams.id
         }
+        
+        if($routeParams.id != undefined){
+            $scope.userChooser = false;
+        } else {
+            $scope.userChooser = true;
+        }
 
         $scope.create = function () {
             var json = {
