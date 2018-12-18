@@ -6,7 +6,9 @@ moduleTipousuario.controller("tipousuarioEditController", [
     "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, $routeParams, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.edited = true;
         $scope.logged = false;
 
@@ -25,7 +27,7 @@ moduleTipousuario.controller("tipousuarioEditController", [
             var json = {
                 id: $scope.id,
                 desc: $scope.desc
-            }
+            };
             $http({
                 method: 'GET',
                 header: {
@@ -35,8 +37,8 @@ moduleTipousuario.controller("tipousuarioEditController", [
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
-            })
-        }
+            });
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();

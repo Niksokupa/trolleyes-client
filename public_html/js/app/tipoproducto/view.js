@@ -1,7 +1,8 @@
 'use strict'
 
-moduleTipoproducto.controller('tipoproductoViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, toolService, $routeParams, oSessionService) {
+moduleTipoproducto.controller('tipoproductoViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.id = $routeParams.id;
         $scope.mostrar = false;
         $scope.logged = false;
@@ -9,10 +10,10 @@ moduleTipoproducto.controller('tipoproductoViewController', ['$scope', '$http', 
         $scope.ajaxData = "";
         $scope.toggle = function () {
             $scope.mostrar = !$scope.mostrar;
-        }
+        };
         $scope.enable = function () {
             $scope.activar = !$scope.activar;
-        }
+        };
         $http({
             method: 'GET',
             //withCredentials: true,
@@ -29,15 +30,6 @@ moduleTipoproducto.controller('tipoproductoViewController', ['$scope', '$http', 
             $scope.loggeduser = oSessionService.getUserName();
             $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;

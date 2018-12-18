@@ -1,7 +1,8 @@
 "use strict";
 
-moduleLinea.controller('lineaRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleLinea.controller('lineaRemoveController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.deleted = true;
         $scope.logged = false;
         $http({

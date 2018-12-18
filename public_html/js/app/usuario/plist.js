@@ -1,7 +1,8 @@
 'use strict'
 
-moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.totalPages = 1;
 

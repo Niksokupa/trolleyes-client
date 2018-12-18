@@ -1,7 +1,9 @@
 'use strict'
 
-moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "sessionService", "countcarritoService", "$mdDialog", '$timeout',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, countcarritoService, $mdDialog, $timeout) {
+moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', "countcarritoService", "$mdDialog", '$timeout', "$anchorScroll",
+    function ($scope, $http, $location, toolService, $routeParams, countcarritoService, $mdDialog, $timeout, $anchorScroll) {
+        
+        $anchorScroll();
         $scope.addCarrito = false;
         $scope.totalPages = 1;
         $scope.ob = "comprar_productos";

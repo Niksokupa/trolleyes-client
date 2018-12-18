@@ -1,5 +1,7 @@
-moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', "countcarritoService", "$mdDialog",
-    function ($scope, $http, countcarritoService, $mdDialog) {
+moduleComprarProducto.controller('comprarPlistController', ['$scope', '$http', "countcarritoService", "$mdDialog", "$anchorScroll",
+    function ($scope, $http, countcarritoService, $mdDialog, $anchorScroll) {
+        
+        $anchorScroll();
 
         $scope.carritoVacio = false;
         $http({

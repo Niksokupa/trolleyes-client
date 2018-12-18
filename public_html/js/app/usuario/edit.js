@@ -6,7 +6,9 @@ moduleUsuario.controller("usuarioEditController", [
     "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, $routeParams, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.edited = true;
         $scope.logged = false;
 
@@ -37,7 +39,7 @@ moduleUsuario.controller("usuarioEditController", [
             $scope.obj_tipoUsuario = {
                 id: response.data.message.obj_tipoUsuario.id,
                 desc: response.data.message.obj_tipoUsuario.desc
-            }
+            };
         }), function () {
         };
 
@@ -54,7 +56,7 @@ moduleUsuario.controller("usuarioEditController", [
                 login: $scope.login,
                 pass: $scope.pass,
                 id_tipoUsuario: $scope.obj_tipoUsuario.id
-            }
+            };
             $http({
                 method: 'GET',
                 header: {
@@ -64,8 +66,8 @@ moduleUsuario.controller("usuarioEditController", [
                 params: {json: JSON.stringify(json)}
             }).then(function () {
                 $scope.edited = false;
-            })
-        }
+            });
+        };
 
         $scope.tipoUsuarioRefresh = function (f, consultar) {
             var form = f;
@@ -83,16 +85,6 @@ moduleUsuario.controller("usuarioEditController", [
             } else {
                 form.userForm.obj_tipousuario.$setValidity('valid', true);
             }
-        }
-        
-        $scope.back = function () {
-            window.history.back();
-        };
-        $scope.close = function () {
-            $location.path('/home');
-        };
-        $scope.plist = function () {
-            $location.path('/usuario/plist');
         };
 
 

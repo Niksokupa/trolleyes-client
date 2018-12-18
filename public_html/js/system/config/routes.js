@@ -53,10 +53,40 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService, count
     return deferred.promise;
 };
 
+var autenticacionHome = function ($q, sessionService, $http, $location) {
+    var deferred = $q.defer();
+    $http({
+        method: 'GET',
+        url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=check'
+    }).then(function (response) {
+        if (response.data.message !== "No active session") {
+            if (response.data.message.obj_tipoUsuario.id === 1) {
+                sessionService.setSessionActive();
+                sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                sessionService.setId(response.data.message.id);
+                sessionService.setAdmin();
+                deferred.resolve();
+            } else if (response.data.message.obj_tipoUsuario.id === 2) {
+                sessionService.setSessionActive();
+                sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+                sessionService.setId(response.data.message.id);
+                sessionService.setUser();
+                deferred.resolve();
+            }
+        }
+        deferred.resolve();
+
+    }, function (response) {
+        deferred.resolve();
+    });
+    return deferred.promise;
+};
+
+
 trolleyes.config(['$routeProvider', function ($routeProvider) {
 
         //HOME
-        $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController'});
+        $routeProvider.when('/home', {templateUrl: 'js/app/common/home.html', controller: 'homeController', resolve: {auth: autenticacionHome}});
 
         //TIPOUSUARIO
         $routeProvider.when('/tipousuario/plist', {templateUrl: 'js/app/tipousuario/plist.html', controller: 'tipousuarioPlistController'});

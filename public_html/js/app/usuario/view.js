@@ -1,7 +1,8 @@
 'use strict'
 
-moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, toolService, $routeParams, oSessionService) {
+moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.id = $routeParams.id;
         $scope.logged = false;
         $scope.mostrar = false;
@@ -26,12 +27,5 @@ moduleUsuario.controller('usuarioViewController', ['$scope', '$http', 'toolServi
             $scope.status = response.status;
         });
         $scope.isActive = toolService.isActive;
-
-        if (oSessionService.getUserName() !== "") {
-            $scope.loggeduser = oSessionService.getUserName();
-            $scope.loggeduserid = oSessionService.getId();
-            $scope.logged = true;
-        }
-
     }
 ]);

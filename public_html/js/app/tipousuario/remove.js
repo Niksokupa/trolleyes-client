@@ -1,7 +1,8 @@
 "use strict";
 
-moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.deleted = true;
         $scope.logged = false;
         $http({
@@ -17,8 +18,8 @@ moduleTipousuario.controller('tipousuarioRemoveController', ['$scope', '$http', 
                 url: `http://localhost:8081/trolleyes/json?ob=tipousuario&op=remove&id=${$routeParams.id}`
             }).then(function (response) {
                 $scope.deleted = false;
-            })
-        }
+            });
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();

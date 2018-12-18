@@ -1,7 +1,8 @@
 "use strict";
 
-moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.deleted = true;
         $scope.logged = false;
         $http({
@@ -17,8 +18,8 @@ moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$loca
                 url: `http://localhost:8081/trolleyes/json?ob=producto&op=remove&id=${$routeParams.id}`
             }).then(function (response) {
                 $scope.deleted = false;
-            })
-        }
+            });
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
@@ -33,7 +34,7 @@ moduleProducto.controller('productoRemoveController', ['$scope', '$http', '$loca
             }).then(function () {
                 $location.url('/');
             });
-        }
+        };
 
         $scope.isActive = toolService.isActive;
     }

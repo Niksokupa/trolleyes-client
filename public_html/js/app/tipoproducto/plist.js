@@ -1,7 +1,8 @@
 'use strict'
 
-moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.ob = "tipoproducto";
         $scope.logged = false;
         $scope.totalPages = 1;
@@ -32,10 +33,10 @@ moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http',
 
         $scope.resetOrder = function () {
             $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
-        }
+        };
 
         $scope.ordena = function (order, align) {
-            if ($scope.orderURLServidor == "") {
+            if ($scope.orderURLServidor === "") {
                 $scope.orderURLServidor = "&order=" + order + "," + align;
                 $scope.orderURLCliente = order + "," + align;
             } else {
@@ -43,7 +44,7 @@ moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http',
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
             $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
-        }
+        };
 
         //getcount
         $http({
@@ -76,7 +77,7 @@ moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http',
 
         $scope.update = function () {
             $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        }
+        };
 
         //paginacion neighbourhood
         function pagination2() {
@@ -98,21 +99,12 @@ moduleTipoproducto.controller('tipoproductoPlistController', ['$scope', '$http',
         }
         $scope.create = function () {
             $location.url($scope.ob + '/new');
-        }
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
             $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;

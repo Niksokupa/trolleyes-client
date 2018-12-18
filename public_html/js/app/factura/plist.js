@@ -1,7 +1,8 @@
 'use strict'
 
-moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleFactura.controller('facturaPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.ob = "factura";
         $scope.totalPages = 1;

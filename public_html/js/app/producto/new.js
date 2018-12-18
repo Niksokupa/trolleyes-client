@@ -3,20 +3,21 @@
 moduleProducto.controller("productoNewController", [
     "$scope",
     "$http",
-    "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService, elem) {
+    "$anchorScroll",
+    function ($scope, $http, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.created = true;
         $scope.logged = false;
         $scope.obj_tipoProducto = {
             id: null,
             desc: null
-        }
+        };
 
         $scope.create = function () {
-            
-            if ($scope.myFile == undefined) {
+
+            if ($scope.myFile === undefined) {
                 $scope.foto = "Foto";
             } else {
                 $scope.foto = guid() + $scope.myFile.name;
@@ -30,8 +31,8 @@ moduleProducto.controller("productoNewController", [
                 precio: $scope.precio,
                 foto: $scope.foto,
                 id_tipoProducto: $scope.obj_tipoProducto.id
-            }
-            
+            };
+
             $scope.fileNameChanged();
 
             $http({
@@ -48,7 +49,7 @@ moduleProducto.controller("productoNewController", [
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
-        }
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
@@ -71,7 +72,7 @@ moduleProducto.controller("productoNewController", [
             } else {
                 form.userForm.obj_tipoProducto.$setValidity('valid', true);
             }
-        }
+        };
 
         $scope.fileNameChanged = function () {
             //Solucion mas cercana
@@ -87,15 +88,8 @@ moduleProducto.controller("productoNewController", [
                 method: 'POST',
                 data: oFormData,
                 url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
-            }).then(function (response) {
-                console.log(response);
-            }, function (response) {
-                console.log(response)
             });
-        }
-
-
-
+        };
 
         //Random generator
 
@@ -108,7 +102,6 @@ moduleProducto.controller("productoNewController", [
                     .toString(16)
                     .substring(1);
         }
-
 
 
         $scope.isActive = toolService.isActive;

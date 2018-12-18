@@ -3,10 +3,9 @@
 moduleUsuario.controller("usuarioLoginController", [
     "$scope",
     "$http",
-    "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    function ($scope, $http, toolService, oSessionService) {
         $scope.logged = false;
         $scope.failedlogin = false;
         $scope.logging = function () {
@@ -22,7 +21,7 @@ moduleUsuario.controller("usuarioLoginController", [
                 },
                 url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=login&user=' + login + '&pass=' + pass
             }).then(function (response, data) {
-                if (response.data.status == 401) {
+                if (response.data.status === 401) {
                     $scope.failedlogin = true;
                 } else {
                     $scope.logged = true;
@@ -30,15 +29,10 @@ moduleUsuario.controller("usuarioLoginController", [
                     oSessionService.setSessionActive();
                     oSessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
                     $scope.loggeduser = oSessionService.getUserName();
-                    if (response.data.message.obj_tipoUsuario.desc == "Administrador") {
-                        oSessionService.setAdmin();
-                    } else {
-                        oSessionService.setUser();
-                    }
                 }
 
             });
-        }
+        };
         $scope.isActive = toolService.isActive;
     }
 ]);

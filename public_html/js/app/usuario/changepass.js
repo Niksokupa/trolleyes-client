@@ -4,7 +4,9 @@ moduleUsuario.controller("usuarioChangePassController", [
     "$scope",
     "$http",
     "$mdDialog",
-    function ($scope, $http, $mdDialog) {
+    "$anchorScroll",
+    function ($scope, $http, $mdDialog, $anchorScroll) {
+        $anchorScroll();
         $scope.changed = true;
 
 
@@ -23,16 +25,16 @@ moduleUsuario.controller("usuarioChangePassController", [
                     },
                     url: `http://localhost:8081/trolleyes/json?ob=usuario&op=updatepass&newpass=${new_pass}&lastpass=${last_pass}`
                 }).then(function (response) {
-                    if (response.data.status == 500) {
+                    if (response.data.status === 500) {
                         $scope.showAlert('Error', 'Tu contraseña actual no coincide.');
                     } else {
                         $scope.changed = false;
                     }
                 }), function (response) {
 
-                }
+                };
             }
-        }
+        };
 
         $scope.showAlert = function (titulo, description) {
             $mdDialog.show(
@@ -45,4 +47,4 @@ moduleUsuario.controller("usuarioChangePassController", [
                     );
         };
 
-    }])
+    }]);

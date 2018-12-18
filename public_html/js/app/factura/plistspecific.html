@@ -28,19 +28,19 @@
                     <nav aria-label="paginacion">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plistspecific/{{rpp}}/1/{{order}}/{{align}}">First</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plistspecific/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
                             </li>
                             <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                                <a class="page-link" href="{{ob}}/plistspecific/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plistspecific/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plistspecific/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
                             </li>
                         </ul>
                     </nav>
@@ -117,16 +117,6 @@
                                         <p>
                                             Lineas
                                         </p>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <button type="button" class="btn btn-light" ng-click="ordena('numLineas', 'asc')">
-                                                <i class="fas fa-long-arrow-alt-up"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-light" ng-click="ordena('numLineas', 'desc')">
-                                                <i class="fas fa-long-arrow-alt-down"></i>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             </th> 

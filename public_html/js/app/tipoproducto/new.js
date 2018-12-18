@@ -3,16 +3,17 @@
 moduleTipoproducto.controller("tipoproductoNewController", [
     "$scope",
     "$http",
-    "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.created = true;
         $scope.logged = false;
         $scope.create = function () {
             var json = {
                 desc: $scope.desc
-            }
+            };
 
             $http({
                 method: 'GET',
@@ -28,21 +29,12 @@ moduleTipoproducto.controller("tipoproductoNewController", [
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
-        }
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();
             $scope.loggeduserid = oSessionService.getId();
             $scope.logged = true;
-        }
-
-        $scope.logout = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=logout'
-            }).then(function () {
-                $location.url('/');
-            });
         }
 
         $scope.isActive = toolService.isActive;

@@ -3,16 +3,17 @@
 moduleTipousuario.controller("tipousuarioNewController", [
     "$scope",
     "$http",
-    "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.created = true;
         $scope.logged = false;
         $scope.create = function () {
             var json = {
                 desc: $scope.desc
-            }
+            };
 
             $http({
                 method: 'GET',
@@ -28,7 +29,7 @@ moduleTipousuario.controller("tipousuarioNewController", [
                 $scope.status = response.status;
                 $scope.ajaxDataUsuarios = response.data.message || 'Request failed';
             });
-        }
+        };
 
         if (oSessionService.getUserName() !== "") {
             $scope.loggeduser = oSessionService.getUserName();

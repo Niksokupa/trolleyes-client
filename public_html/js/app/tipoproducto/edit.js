@@ -6,7 +6,9 @@ moduleTipoproducto.controller("tipoproductoEditController", [
     "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, $routeParams, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.edited = true;
         $scope.logged = false;
 

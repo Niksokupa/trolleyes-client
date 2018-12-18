@@ -3,10 +3,11 @@
 moduleUsuario.controller("usuarioNewController", [
     "$scope",
     "$http",
-    "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.created = true;
         $scope.logged = false;
         $scope.obj_tipoUsuario = {

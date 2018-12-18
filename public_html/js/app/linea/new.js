@@ -6,7 +6,9 @@ moduleLinea.controller("lineaNewController", [
     "$routeParams",
     "toolService",
     "sessionService",
-    function ($scope, $http, $routeParams, toolService, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, $routeParams, toolService, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.created = true;
         $scope.logged = false;
         $scope.facturaid = $routeParams.id;

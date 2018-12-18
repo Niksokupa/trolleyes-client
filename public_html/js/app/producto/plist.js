@@ -1,7 +1,8 @@
 'use strict'
 
-moduleProducto.controller('productoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleProducto.controller('productoPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.ob = "producto";
         $scope.totalPages = 1;
@@ -41,10 +42,10 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
 
         $scope.resetOrder = function () {
             $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
-        }
+        };
 
         $scope.ordena = function (order, align) {
-            if ($scope.orderURLServidor == "") {
+            if ($scope.orderURLServidor === "") {
                 $scope.orderURLServidor = "&order=" + order + "," + align;
                 $scope.orderURLCliente = order + "," + align;
             } else {
@@ -52,7 +53,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
             $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
-        }
+        };
 
         //getcount
         $http({
@@ -85,7 +86,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
 
         $scope.update = function () {
             $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        }
+        };
 
         //paginacion neighbourhood
         function pagination2() {
@@ -107,7 +108,7 @@ moduleProducto.controller('productoPlistController', ['$scope', '$http', '$locat
         }
         $scope.create = function () {
             $location.url($scope.ob + '/new');
-        }
+        };
         $scope.isActive = toolService.isActive;
     }
 

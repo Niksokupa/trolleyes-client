@@ -1,7 +1,8 @@
 'use strict'
 
-moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, toolService, $routeParams, oSessionService) {
+moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.id = $routeParams.id;
         $scope.mostrar = false;
@@ -9,10 +10,10 @@ moduleProducto.controller('productoViewController', ['$scope', '$http', 'toolSer
         $scope.ajaxData = "";
         $scope.toggle = function () {
             $scope.mostrar = !$scope.mostrar;
-        }
+        };
         $scope.enable = function () {
             $scope.activar = !$scope.activar;
-        }
+        };
         $http({
             method: 'GET',
             //withCredentials: true,

@@ -6,7 +6,9 @@ moduleUsuario.controller("usuarioRemoveController", [
     "toolService",
     "$routeParams",
     "sessionService",
-    function ($scope, $http, toolService, $routeParams, oSessionService) {
+    "$anchorScroll",
+    function ($scope, $http, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.deleted = true;
         $scope.id = $routeParams.id;
         $http({

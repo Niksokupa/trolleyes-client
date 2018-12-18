@@ -1,7 +1,8 @@
 'use strict'
 
-moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService',
-    function ($scope, $http, $location, toolService, $routeParams, oSessionService) {
+moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$anchorScroll',
+    function ($scope, $http, $location, toolService, $routeParams, oSessionService, $anchorScroll) {
+        $anchorScroll();
         $scope.logged = false;
         $scope.ob = "factura";
         $scope.totalPages = 1;
@@ -46,7 +47,7 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
         }
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob + '/plist/' + $scope.rpp + '/' + $scope.page);
+            $location.url($scope.ob + '/plistspecific/' + $scope.rpp + '/' + $scope.page);
         }
 
         $scope.ordena = function (order, align) {
@@ -57,32 +58,32 @@ moduleFactura.controller('facturaPlistspecificController', ['$scope', '$http', '
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url(`usuario/` + $scope.userid + `/` + $scope.ob + `/plistspecific/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
 
         //getcount
 
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.userid
-            }).then(function (response) {
-                $scope.status = response.status;
-                $scope.ajaxDataUsuariosNumber = response.data.message;
-                if ($scope.ajaxDataUsuariosNumber === 0) {
-                    $scope.empty = true;
-                } else {
-                    $scope.empty = false;
-                }
-                $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
-                if ($scope.page > $scope.totalPages) {
-                    $scope.page = $scope.totalPages;
-                    $scope.update();
-                }
-                pagination2();
-            }), function (response) {
-                $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
-                $scope.status = response.status;
-            };
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/trolleyes/json?ob=' + $scope.ob + '&op=getcountspecific&id=' + $scope.userid
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataUsuariosNumber = response.data.message;
+            if ($scope.ajaxDataUsuariosNumber === 0) {
+                $scope.empty = true;
+            } else {
+                $scope.empty = false;
+            }
+            $scope.totalPages = Math.ceil($scope.ajaxDataUsuariosNumber / $scope.rpp);
+            if ($scope.page > $scope.totalPages) {
+                $scope.page = $scope.totalPages;
+                $scope.update();
+            }
+            pagination2();
+        }), function (response) {
+            $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        };
 
 
 
