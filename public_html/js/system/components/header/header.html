@@ -45,7 +45,7 @@
                         {{c.name}}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="usuario/profile">
+                        <a ng-show="isAdmin" class="dropdown-item" href="usuario/profile">
                             <i class="fas fa-user-circle"></i>
                             Perfil
                         </a>
