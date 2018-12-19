@@ -81,6 +81,9 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
+            for (var i = 0; i < $scope.ajaxDataUsuarios.length; i++) {
+                $scope.ajaxDataUsuarios[i].fecha = formatDate($scope.ajaxDataUsuarios[i].fecha);
+            }
             if ($scope.ajaxDataUsuarios.length > 0) {
                 $scope.usuario = $scope.ajaxDataUsuarios[0].obj_usuario.nombre + " " + $scope.ajaxDataUsuarios[0].obj_usuario.ape1 + " (" + $scope.ajaxDataUsuarios[0].obj_usuario.login + ")";
             }
@@ -115,6 +118,74 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
 
         $scope.isActive = toolService.isActive;
 
+        function formatDate(fecha) {
+            var fechaCambiada = fecha.replace(', ', ' ');
+            var fechaSeparada = fechaCambiada.split(" ");
+            var horaSeparada = fechaSeparada[3].split(":");
+
+            var dia = fechaSeparada[1];
+            var mes;
+            var anyo = fechaSeparada[2];
+            var hora;
+            var minuto = horaSeparada[1];
+            var segundo = horaSeparada[2];
+
+            switch (fechaSeparada[0]) {
+                case "Jan":
+                    mes = "1";
+                    break;
+                case "Feb":
+                    mes = "2";
+                    break;
+                case "Mar":
+                    mes = "3";
+                    break;
+                case "Apr":
+                    mes = "4";
+                    break;
+                case "May":
+                    mes = "5";
+                    break;
+                case "Jun":
+                    mes = "6";
+                    break;
+                case "Jul":
+                    mes = "7";
+                    break;
+                case "Aug":
+                    mes = "8";
+                    break;
+                case "Sep":
+                    mes = "9";
+                    break;
+                case "Oct":
+                    mes = "10";
+                    break;
+                case "Nov":
+                    mes = "11";
+                    break;
+                case "Dec":
+                    mes = "12";
+                    break;
+            }
+
+            if (fechaSeparada[4] === "AM") {
+                if (horaSeparada[0] === "12") {
+                    hora = "0";
+                } else {
+                    hora = horaSeparada[0];
+                }
+            } else {
+                if (horaSeparada[0] === "12") {
+                    horaSeparada[0] = "0";
+                }
+                var horaAm = parseInt(horaSeparada[0]);
+                hora = horaAm + 12;
+            }
+
+            var fechaFinal = dia + '/' + mes + '/' + anyo + ' ' + hora + ':' + minuto + ':' + segundo;
+            return fechaFinal;
+        }
 
 
         $scope.descargarPDF = function (id) {
@@ -126,15 +197,15 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
 
             var doc = new jsPDF();
             for (var i = 0; i < length; i++) {
-                if($scope.ajaxDataUsuarios[i].id == id){
+                if ($scope.ajaxDataUsuarios[i].id == id) {
                     usuario = $scope.usuario;
                     fecha = $scope.ajaxDataUsuarios[i].fecha;
-                    
+
                     iva = $scope.ajaxDataUsuarios[i].iva;
                 }
-                
+
             }
-            
+
             $http({
                 method: 'GET',
                 url: 'http://localhost:8081/trolleyes/json?ob=linea&op=getpagespecific&rpp=10000&page=1&id=' + id
@@ -160,7 +231,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.text(14, 72, '54861 Valencia (Valencia)');
                 doc.setFontSize(30);
                 doc.setFontType('bold');
-                doc.text(125, 23, 'Factura N 25');
+                doc.text(125, 23, 'Factura N ' + id);
                 doc.setFontSize(14);
                 doc.setFontType('normal');
                 doc.text(125, 40, 'Cliente. ' + usuario);
@@ -234,7 +305,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.text(115, 285, (precio * (iva / 100)).toFixed(2).toString());
                 doc.text(158, 285, (precio * (iva / 100 + 1)).toFixed(2).toString());
 
-                doc.output('save', 'Factura-' + id + '-'+ fecha +'.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
+                doc.output('save', 'Factura-' + id + '-' + fecha + '.pdf'); //Try to save PDF as a file (not works on ie before 10, and some mobile devices)
 //                doc.output('datauristring');        //returns the data uri string
 //                doc.output('datauri');              //opens the data uri in current window
 //                doc.output('dataurlnewwindow');     //opens the data uri in new window
