@@ -234,8 +234,8 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.text(125, 23, 'Factura N ' + id);
                 doc.setFontSize(14);
                 doc.setFontType('normal');
-                doc.text(125, 40, 'Cliente. ' + usuario);
-                doc.text(125, 60, 'Fecha. ' + fecha);
+                doc.text(125, 40, 'Cliente: ' + usuario);
+                doc.text(125, 60, 'Fecha: ' + fecha);
                 doc.rect(8, 80, 195, 210);
                 doc.setFontSize(15);
                 doc.text(12, 90, 'Codigo');
@@ -267,8 +267,8 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                         doc.text(14, 72, '54861 Valencia (Valencia)');
                         doc.setFontSize(30);
                         doc.setFontType('bold');
-                        doc.text(125, 23, 'Factura N 25');
-                        doc.setFontSize(12);
+                        doc.text(125, 23, 'Factura Nº' + id);
+                        doc.setFontSize(14);
                         doc.setFontType('normal');
                         doc.text(125, 40, 'Cliente: ' + usuario);
                         doc.text(125, 60, 'Fecha: ' + fecha);

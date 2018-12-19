@@ -157,10 +157,9 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
 
         function cartAnimation(id) {
             
-            var idReal = id;
-            var esto = $('.add-to-cart' + idReal);
-            var cart = $('.shopping-cart');
-            var imgtodrag = $(esto).parent('.col-12').parent('.row').parent('.card-body').find("img").eq(0);
+            var esto = $('.prod' + id);
+            var cart = $('.pruebecica');
+            var imgtodrag = $(esto).find("img").eq(0);
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                         .offset({
@@ -177,17 +176,10 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
                         .appendTo($('body'))
                         .animate({
                             'top': cart.offset().top + 20,
-                            'left': cart.offset().left +20,
+                            'left': cart.offset().left + 20,
                             'width': 64,
                             'height': 64
                         }, 1250, 'easeOutSine');
-
-                setTimeout(function () {
-                    cart.effect("shake", {
-                        times: 2
-                    }, 200);
-                }, 1500);
-
                 imgclone.animate({
                     'width': 0,
                     'height': 0

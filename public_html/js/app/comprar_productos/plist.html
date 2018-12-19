@@ -1,5 +1,4 @@
 <header-component prueba="addCarrito"></header-component>
-<div class="d-flex align-items-right justify-content-end fixed-top" style="z-index: -1"><i class="shopping-cart" style="padding-right: 200px; text-align: right;">asdad</i></div>
 <div class="container-fluid mb-5">
     <div class="row">
         <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top: 90px">
@@ -53,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="hvr-border-fade hvr-float-shadow product" style="width: 15rem; height: 31rem; margin: 5px; border-width: 0px; border-radius: 12px;" ng-repeat="producto in productos">
-                    <div class="card-body">
+                    <div class="card-body prod{{$index}}">
                         <div class="row imagenproducto">
                             <div class="col-12 mx-auto" style=" text-align: center;">
                                 <!--<i style="font-size: 128px;" class="icon ion-logo-tux"></i>-->
@@ -105,7 +104,7 @@
                         </div>
                         <div class="row" ng-show="producto.producto.existencias > 0">
                             <div class="col-12 d-flex justify-content-center align-items-center hvr-icon-wobble-horizontal">
-                                <button type="button" style="border-radius: 25px" class="btn btn-outline-success add-to-cart{{$index}}" ng-click="save(producto, $index)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
+                                <button type="button" style="border-radius: 25px" class="btn btn-outline-success add-to-cart" ng-click="save(producto, $index)"><i class="fas fa-shopping-cart"></i><i class="fas fa-arrow-left hvr-icon"></i> Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
