@@ -26,7 +26,7 @@ moduleUsuario.controller("usuarioChangePassController", [
                     url: `http://localhost:8081/trolleyes/json?ob=usuario&op=updatepass&newpass=${new_pass}&lastpass=${last_pass}`
                 }).then(function (response) {
                     if (response.data.status === 500) {
-                        $scope.showAlert('Error', 'Tu contraseña actual no coincide.');
+                        $scope.showAlert('Error', response.data.message);
                     } else {
                         $scope.changed = false;
                     }
