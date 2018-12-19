@@ -17,9 +17,11 @@ var autenticacionAdministrador = function ($q, $location, $http, sessionService)
             //hay que meter el usuario activo en el sessionService
             deferred.resolve();
         } else {
+            sessionService.setSessionInactive();
             $location.path('/home');
         }
     }, function (response) {
+        sessionService.setSessionInactive();
         $location.path('/home');
     });
     return deferred.promise;
@@ -31,10 +33,10 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService, count
         method: 'GET',
         url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=check'
     }).then(function (response) {
-        sessionService.setSessionActive();
-        sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
-        sessionService.setId(response.data.message.id);
         if (response.data.status == 200) {
+            sessionService.setSessionActive();
+            sessionService.setUserName(response.data.message.nombre + " " + response.data.message.ape1);
+            sessionService.setId(response.data.message.id);
             if (response.data.message.obj_tipoUsuario.desc !== "Administrador") {
                 sessionService.setUser();
             } else {
@@ -45,15 +47,17 @@ var autenticacionUsuario = function ($q, $location, $http, sessionService, count
             countcarritoService.updateCarrito();
             deferred.resolve();
         } else {
+            sessionService.setSessionInactive();
             $location.path('/home');
         }
     }, function (response) {
+        sessionService.setSessionInactive();
         $location.path('/home');
     });
     return deferred.promise;
 };
 
-var autenticacionHome = function ($q, sessionService, $http, $location) {
+var autenticacionHome = function ($q, sessionService, $http) {
     var deferred = $q.defer();
     $http({
         method: 'GET',
@@ -105,7 +109,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/edit/:id', {templateUrl: 'js/app/usuario/edit.html', controller: 'usuarioEditController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/app/usuario/remove.html', controller: 'usuarioRemoveController', resolve: {auth: autenticacionAdministrador}});
         $routeProvider.when('/usuario/plist/:rpp?/:page?/:order?', {templateUrl: 'js/app/usuario/plist.html', controller: 'usuarioPlistController', resolve: {auth: autenticacionAdministrador}});
-        $routeProvider.when('/usuario/changepass', {templateUrl: 'js/app/usuario/changepass.html', controller: 'usuarioChangePassController'}, {auth: autenticacionUsuario});
+        $routeProvider.when('/usuario/changepass', {templateUrl: 'js/app/usuario/changepass.html', controller: 'usuarioChangePassController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/usuario/ownbills/:rpp?/:page?/:order?', {templateUrl: 'js/app/usuario/ownbills.html', controller: 'usuarioOwnbillsController', resolve: {auth: autenticacionUsuario}});
         $routeProvider.when('/usuario/profile', {templateUrl: 'js/app/usuario/profile.html', controller: 'usuarioProfileController', resolve: {auth: autenticacionUsuario}});
 

@@ -126,14 +126,15 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
 
             var doc = new jsPDF();
             for (var i = 0; i < length; i++) {
-
+                if($scope.ajaxDataUsuarios[i].id == id){
                     usuario = $scope.usuario;
                     fecha = $scope.ajaxDataUsuarios[i].fecha;
                     
                     iva = $scope.ajaxDataUsuarios[i].iva;
+                }
                 
             }
-            ;
+            
             $http({
                 method: 'GET',
                 url: 'http://localhost:8081/trolleyes/json?ob=linea&op=getpagespecific&rpp=10000&page=1&id=' + id
@@ -150,7 +151,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.addImage(imgData, 'JPEG', 10, 12, 42, 40);
                 doc.setFontSize(13);
                 doc.setFontType('bold');
-                doc.text(55, 20, 'NOMBRE DE LA EMPRESA');
+                doc.text(55, 20, 'TROLLEYES');
                 doc.text(55, 40, 'Tel. 963 98 98 98');
                 doc.text(55, 50, 'Email prueba@gmail.com');
                 doc.text(55, 30, 'CIF. B45789856');
@@ -160,7 +161,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.setFontSize(30);
                 doc.setFontType('bold');
                 doc.text(125, 23, 'Factura N 25');
-                doc.setFontSize(16);
+                doc.setFontSize(14);
                 doc.setFontType('normal');
                 doc.text(125, 40, 'Cliente. ' + usuario);
                 doc.text(125, 60, 'Fecha. ' + fecha);
@@ -169,7 +170,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                 doc.text(12, 90, 'Codigo');
                 doc.text(50, 90, 'Descripcion');
                 doc.text(125, 90, 'Cantidad');
-                doc.text(170, 90, 'Precio ()');
+                doc.text(170, 90, 'Precio (EUR)');
                 doc.setFillColor(156, 156, 156);
                 doc.rect(9, 93, 193, 5, 'F');
                 doc.setFontSize(15);
@@ -205,7 +206,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                         doc.text(12, 90, 'Codigo');
                         doc.text(50, 90, 'Descripcion');
                         doc.text(125, 90, 'Cantidad');
-                        doc.text(170, 90, 'Precio');
+                        doc.text(170, 90, 'Precio (EUR)');
                         doc.setFillColor(156, 156, 156);
                         doc.rect(9, 93, 193, 5, 'F');
                         doc.setFontSize(15);

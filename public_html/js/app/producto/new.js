@@ -21,6 +21,7 @@ moduleProducto.controller("productoNewController", [
                 $scope.foto = "Foto";
             } else {
                 $scope.foto = guid() + $scope.myFile.name;
+                $scope.fileNameChanged();
             }
 
             var json = {
@@ -32,8 +33,6 @@ moduleProducto.controller("productoNewController", [
                 foto: $scope.foto,
                 id_tipoProducto: $scope.obj_tipoProducto.id
             };
-
-            $scope.fileNameChanged();
 
             $http({
                 method: 'GET',
