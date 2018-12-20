@@ -288,7 +288,7 @@ moduleUsuario.controller('usuarioOwnbillsController', ['$scope', '$http', '$loca
                     doc.text(125, linea, ($scope.ajaxLineasFactura[x].cantidad).toString());
                     doc.text(170, linea, (parseFloat(($scope.ajaxLineasFactura[x].obj_producto.precio)).toFixed(2).toString()));
                     linea = linea + 13;
-                    precio = (precio + $scope.ajaxLineasFactura[x].obj_producto.precio);
+                    precio = (precio + ($scope.ajaxLineasFactura[x].obj_producto.precio * $scope.ajaxLineasFactura[x].cantidad));
                     cantidad = cantidad + $scope.ajaxLineasFactura[x].cantidad;
                 }
 
