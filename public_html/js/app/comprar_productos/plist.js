@@ -158,7 +158,7 @@ moduleComprarProducto.controller('comprarproductoPlistController', ['$scope', '$
         function cartAnimation(id) {
             
             var esto = $('.prod' + id);
-            var cart = $('.pruebecica');
+            var cart = $('.carrito');
             var imgtodrag = $(esto).find("img").eq(0);
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
